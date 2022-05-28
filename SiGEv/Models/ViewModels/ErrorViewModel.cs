@@ -1,6 +1,6 @@
 using System;
 
-namespace SiGEv.Models
+namespace SiGEv.Models.ViewModels
 {
     public class ErrorViewModel
     {
