@@ -1,6 +1,6 @@
 using System;
 
-namespace SiGEv___Sistema_de_Gerenciamento_de_Eventos.Models
+namespace SiGEv.Models
 {
     public class ErrorViewModel
     {

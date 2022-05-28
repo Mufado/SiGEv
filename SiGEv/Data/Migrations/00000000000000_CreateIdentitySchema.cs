@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace SiGEv___Sistema_de_Gerenciamento_de_Eventos.Data.Migrations
+namespace SiGEv.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

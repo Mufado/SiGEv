@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SiGEv___Sistema_de_Gerenciamento_de_Eventos
+namespace SiGEv
 {
     public class Program
     {
