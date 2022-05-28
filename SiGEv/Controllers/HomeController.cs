@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SiGEv___Sistema_de_Gerenciamento_de_Eventos.Models;
+using SiGEv.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SiGEv___Sistema_de_Gerenciamento_de_Eventos.Controllers
+namespace SiGEv.Controllers
 {
     public class HomeController : Controller
     {

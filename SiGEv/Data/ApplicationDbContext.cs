@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SiGEv___Sistema_de_Gerenciamento_de_Eventos.Data
+namespace SiGEv.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

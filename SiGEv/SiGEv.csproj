@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-SiGEv___Sistema_de_Gerenciamento_de_Eventos-A7EA14B2-93A9-4684-9B3B-06233DE3E994</UserSecretsId>
-    <RootNamespace>SiGEv___Sistema_de_Gerenciamento_de_Eventos</RootNamespace>
+    <UserSecretsId>aspnet-SiGEv-A7EA14B2-93A9-4684-9B3B-06233DE3E994</UserSecretsId>
+    <RootNamespace>SiGEv</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
 

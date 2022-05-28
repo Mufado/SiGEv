@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SiGEv___Sistema_de_Gerenciamento_de_Eventos.Data;
+using SiGEv.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SiGEv___Sistema_de_Gerenciamento_de_Eventos
+namespace SiGEv
 {
     public class Startup
     {
