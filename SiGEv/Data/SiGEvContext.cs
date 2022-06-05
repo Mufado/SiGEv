@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SiGEv.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SiGEv.Data
 {
