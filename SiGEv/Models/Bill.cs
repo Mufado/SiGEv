@@ -26,13 +26,14 @@ namespace SiGEv.Models
         {
         }
 
-        public Bill(int id, int protocol, BillType type, int userId, string clientDocument,
+        public Bill(int id, int protocol, BillType type, int userId, User user, string clientDocument,
             string clientName,double value, PaymentType paymentType, DateTime paymentDate)
         {
             Id = id;
             Protocol = protocol;
             Type = type;
             UserId = userId;
+            User = user;
             ClientDocument = clientDocument;
             ClientName = clientName;
             Value = value;
