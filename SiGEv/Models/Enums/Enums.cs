@@ -1,4 +1,7 @@
-﻿namespace SiGEv.Models.Enums
+﻿
+using System.ComponentModel.DataAnnotations;
+
+namespace SiGEv.Models.Enums
 {
     public class Enums
     {
@@ -10,8 +13,11 @@
         }
         public enum PersonGender
         {
+            [Display(Name = "Masculino")]
             Male = 0,
+            [Display(Name = "Feminino")]
             Female = 1,
+            [Display(Name = "Outro")]
             Another = 2
         }
         public enum EventType

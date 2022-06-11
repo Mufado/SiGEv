@@ -1,21 +1,31 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using static SiGEv.Models.Enums.Enums;
 
 namespace SiGEv.Models
 {
-    public class User
+    public class User : IdentityUser<int>
     {
-        public int Id { get; set; }
+        [PersonalData]
         public string Name { get; set; }
+        
+        [PersonalData]
         public string TaxNumber { get; set; }
+
+        [PersonalData]
         public string NationalIdentity { get; set; }
         public PersonGender Sex { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        
+        [PersonalData]
         public ICollection<Bill> Bills { get; set; } = new List<Bill>();
+
+        [PersonalData]
         public string Login { get; set; }
+
+        [PersonalData]
         public string Password { get; set; }
+        
         public DateTime BirthDate { get; set; }
         public UserType Type { get; set; }
 
@@ -23,11 +33,10 @@ namespace SiGEv.Models
         {
         }
 
-        public User(int id, string name, string taxNumber,
+        public User(string name, string taxNumber,
             string nationalIdentity, PersonGender sex, string email,
-            string phoneNumber, string login, string password, DateTime birthDate, UserType type)
+            string phoneNumber, string login, string password, DateTime birthDate)
         {
-            Id = id;
             Name = name;
             TaxNumber = taxNumber;
             NationalIdentity = nationalIdentity;
@@ -37,7 +46,6 @@ namespace SiGEv.Models
             Login = login;
             Password = password;
             BirthDate = birthDate;
-            Type = type;
         }
     }
 }
