@@ -1,16 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SiGEv.Models;
 
 namespace SiGEv.Data
 {
-    public class SiGEvContext : DbContext
+    public class SiGEvContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public SiGEvContext(DbContextOptions<SiGEvContext> options)
             : base(options)
         {
         }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Section> Sections { get; set; }
