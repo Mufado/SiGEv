@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiGEv.Data;
-using SiGEv.Models;
 
 namespace SiGEv
 {
@@ -26,15 +25,34 @@ namespace SiGEv
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin"));
+
+                options.AddPolicy("EmployeeAccess", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.IsInRole("Admin")
+                        || context.User.IsInRole("Employee")));
+
+                options.AddPolicy("CustomerAccess", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.IsInRole("Admin")
+                        || context.User.IsInRole("Employee")
+                        || context.User.IsInRole("Customer")));
+            });
+
+            services.AddScoped<SeedingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seed)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                seed.Seed();
             }
             else
             {
