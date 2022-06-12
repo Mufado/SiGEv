@@ -19,12 +19,6 @@ namespace SiGEv.Models
         
         [PersonalData]
         public ICollection<Bill> Bills { get; set; } = new List<Bill>();
-
-        [PersonalData]
-        public string Login { get; set; }
-
-        [PersonalData]
-        public string Password { get; set; }
         
         public DateTime BirthDate { get; set; }
         public UserType Type { get; set; }
@@ -35,7 +29,7 @@ namespace SiGEv.Models
 
         public User(string name, string taxNumber,
             string nationalIdentity, PersonGender sex, string email,
-            string phoneNumber, string login, string password, DateTime birthDate)
+            string phoneNumber, DateTime birthDate)
         {
             Name = name;
             TaxNumber = taxNumber;
@@ -43,8 +37,6 @@ namespace SiGEv.Models
             Sex = sex;
             Email = email;
             PhoneNumber = phoneNumber;
-            Login = login;
-            Password = password;
             BirthDate = birthDate;
         }
     }

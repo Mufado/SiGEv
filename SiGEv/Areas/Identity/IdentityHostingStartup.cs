@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,9 @@ namespace SiGEv.Areas.Identity
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
+                    options.User.AllowedUserNameCharacters = "aãâáàbcdeéèêfghiíìîjklmnoóòõôpqrstuûúùvwxyzAÃÂÁÀBCDEÈÊÉFGHIÌÍÎJKLMNOÓÒÕÔPQRSTUÚÙÛVWXYZ0123456789-._@+";
                 })
+                    .AddRoles<IdentityRole<int>>()
                     .AddEntityFrameworkStores<SiGEvContext>();
             });
         }
