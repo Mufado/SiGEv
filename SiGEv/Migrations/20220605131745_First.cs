@@ -124,8 +124,8 @@ namespace SiGEv.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     EventId = table.Column<int>(nullable: false),
-                    StartTime = table.Column<TimeSpan>(nullable: false),
-                    EndTime = table.Column<TimeSpan>(nullable: false),
+                    StartTime = table.Column<DateTime>(nullable: false),
+                    EndTime = table.Column<DateTime>(nullable: false),
                     CommonPrice = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
