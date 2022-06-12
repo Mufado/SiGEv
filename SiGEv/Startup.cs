@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SiGEv.Data;
+using SiGEv.Services;
 
 namespace SiGEv
 {
@@ -43,6 +44,7 @@ namespace SiGEv
             });
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<EventsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
