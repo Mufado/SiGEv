@@ -11,15 +11,15 @@ namespace SiGEv.Models
         public int EventId { get; set; }
         public Event Event { get; set; }
 
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public double CommonPrice { get; set; }
 
         public Section()
         {
         }
 
-        public Section(int id, int eventId, Event @event, TimeSpan startTime, TimeSpan endTime, double commonPrice)
+        public Section(int id, int eventId, Event @event, DateTime startTime, DateTime endTime, double commonPrice)
         {
             Id = id;
             EventId = eventId;

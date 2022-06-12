@@ -109,7 +109,7 @@ namespace SiGEv.Areas.Identity.Pages.Account
                         return Page();
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     ModelState.AddModelError(string.Empty, "Email incorreto");
                     return Page();
