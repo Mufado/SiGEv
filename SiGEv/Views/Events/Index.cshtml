@@ -6,3 +6,35 @@
 
 <h1>@ViewData["Title"]</h1>
 <p>Seleção de eventos</p>
+
+<table class="table table-striped table-hover">
+    <thead class="bg-secondary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Venue.Adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Date)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
