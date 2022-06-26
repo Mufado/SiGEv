@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SiGEv.Services
 {
@@ -18,7 +19,7 @@ namespace SiGEv.Services
 
         public List<Event> GetAllEvents()
         {
-            return _context.Events.ToList();
+            return _context.Events.Include(ev => ev.Venue).ToList();
         }
     }
 }
