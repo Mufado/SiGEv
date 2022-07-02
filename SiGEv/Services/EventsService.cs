@@ -1,4 +1,4 @@
-﻿using SiGEv.Data;
+using SiGEv.Data;
 using SiGEv.Models;
 using System;
 using System.Collections.Generic;
@@ -21,5 +21,10 @@ namespace SiGEv.Services
         {
             return _context.Events.Include(ev => ev.Venue).ToList();
         }
+
+		public Event FindById(int id)
+		{
+			return _context.Events.FirstOrDefault(ev=> ev.Id == id);
+		}
     }
 }
