@@ -35,5 +35,21 @@ namespace SiGEv.Controllers
 
 			return View(obj);
 		}
+
+		public IActionResult Buy(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var obj = _eventServices.FindById(id.Value);
+			if (obj == null)
+			{
+				return NotFound();
+			}
+
+			return View(obj);
+		}
 	}
 }
