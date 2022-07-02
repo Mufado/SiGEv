@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Services;
 using System.Collections.Generic;
@@ -19,5 +19,21 @@ namespace SiGEv.Controllers
             List<Event> events = _eventServices.GetAllEvents();
             return View(events);
         }
-    }
+
+		public IActionResult Details(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var obj = _eventServices.FindById(id.Value);
+			if (obj == null)
+			{
+				return NotFound();
+			}
+
+			return View(obj);
+		}
+	}
 }
