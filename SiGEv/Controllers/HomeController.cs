@@ -19,7 +19,7 @@ namespace SiGEv.Controllers
             return View();
         }
 
-        public IActionResult Privacidade()
+        public IActionResult Privacy()
         {
             return View();
         }
