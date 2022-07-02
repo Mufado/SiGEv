@@ -24,7 +24,7 @@ namespace SiGEv.Services
 
 		public Event FindById(int id)
 		{
-			return _context.Events.FirstOrDefault(ev=> ev.Id == id);
+			return _context.Events.Include(obj=>obj.Venue).FirstOrDefault(ev=> ev.Id == id);
 		}
     }
 }

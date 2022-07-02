@@ -23,8 +23,15 @@
 				<dd>
 					@Html.DisplayFor(model=>model.Type)
 				</dd>
+				<dt>
+					@Html.DisplayNameFor(model=>model.Venue.Adress)
+				</dt>
+				<dd>
+					@Html.DisplayFor(model=>model.Venue.Adress)
+				</dd>
 			</dl>
 		</div>
+
 		<div class="col-4">
 			<div class="card">
 				<div class="card-header">
@@ -34,7 +41,7 @@
 
 
 					<button type="button" class="btn btn-primary">Comprar</button>
-					<button type="button" class="btn btn-outline-danger">Cancelar</button>
+					<a class="btn btn-outline-danger" asp-area="" asp-controller="Events" asp-action="Index">Cancelar</a>
 				 </div>
 			</div>
 		</div>

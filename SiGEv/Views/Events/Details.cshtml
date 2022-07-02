@@ -1,11 +1,19 @@
 @model SiGEv.Models.Event
 @{
-    ViewData["Title"] = @Html.DisplayFor(model=>model.Title);
+    ViewData["Title"] = "Detalhes";
 }
 
-<h6>Detalhes</h6>
-<h1>@ViewData["Title"]</h1>
-
+<div class="container p-0">
+	<div class="row align-items-end">
+		<div class="col-10">
+			<h6>Detalhes</h6>
+			<h1>@Html.DisplayFor(model=>model.Title)</h1>
+		</div>
+		<div class="col-2 justify-content-end">
+			<a class="btn btn-outline-primary" asp-area="" asp-controller="Events" asp-action="Buy" asp-route-id="@Model.Id">Comprar Ingresso</a>
+		</div>
+	</div>
+</div>
 
 <div>
 	<hr />
@@ -22,5 +30,13 @@
 		<dd>
 			@Html.DisplayFor(model=>model.Type)
 		</dd>
+		<dt>
+			@Html.DisplayNameFor(model=>model.Venue.Adress)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model=>model.Venue.Adress)
+		</dd>
 	</dl>
+
+	
 </div

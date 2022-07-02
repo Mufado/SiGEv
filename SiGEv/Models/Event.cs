@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,7 +17,7 @@ namespace SiGEv.Models
         [Display(Name = "Data de início")]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Local")]
+        [Display(Name = "Tipo")]
         public EventType Type { get; set; }
 
         [ForeignKey("Venue")]

@@ -14,7 +14,10 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Venue)
+                @Html.DisplayNameFor(model => model.Venue.Adress)
+            </th>
+			 <th>
+                @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -33,6 +36,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(x => item.Venue.Adress)
+                </td>
+				<td>
+                    @Html.DisplayFor(x => item.Type)
                 </td>
                 <td>
                     @Html.DisplayFor(x => item.Date)
