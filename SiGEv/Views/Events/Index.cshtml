@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SiGEv.Models.Event>
+@model IEnumerable<SiGEv.Models.Event>
 
 @{
     ViewData["Title"] = "Eventos";
@@ -14,7 +14,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Venue)
+                @Html.DisplayNameFor(model => model.Venue.Adress)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)

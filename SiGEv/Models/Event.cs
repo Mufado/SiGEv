@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,7 +14,7 @@ namespace SiGEv.Models
         public string Title { get; set; }
         public ICollection<Section> Sections { get; set; } = new List<Section>();
         
-        [Display(Name = "Data de início")]
+        [Display(Name = "Data e Horário")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Local")]
