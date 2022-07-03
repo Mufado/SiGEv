@@ -26,5 +26,11 @@ namespace SiGEv.Services
 		{
 			return _context.Events.Include(obj=>obj.Venue).FirstOrDefault(ev=> ev.Id == id);
 		}
+
+		public void Insert(Event obj)
+		{
+			_context.Add(obj);
+			_context.SaveChanges();
+		}
     }
 }

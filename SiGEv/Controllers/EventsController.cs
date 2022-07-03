@@ -22,17 +22,22 @@ namespace SiGEv.Controllers
             return View(events);
         }
 
+		public IActionResult Create()
+		{
+			return View();
+		}
+
 		public IActionResult Details(int? id)
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new {message= "Id n„o fornecido" });
+				return RedirectToAction(nameof(Error), new {message= "Id n√£o fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o encontrado" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o encontrado" });
 			}
 
 			return View(obj);
@@ -42,13 +47,13 @@ namespace SiGEv.Controllers
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o fornecido" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o encontrado" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o encontrado" });
 			}
 
 			return View(obj);
@@ -64,5 +69,6 @@ namespace SiGEv.Controllers
 
 			return View(viewModel);
 		}
+
 	}
 }
