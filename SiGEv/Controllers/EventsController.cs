@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
+using SiGEv.Models.ViewModels;
 using SiGEv.Services;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SiGEv.Controllers
 {
@@ -24,13 +26,13 @@ namespace SiGEv.Controllers
 		{
 			if (id == null)
 			{
-				return NotFound();
+				return RedirectToAction(nameof(Error), new {message= "Id não fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return NotFound();
+				return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
 			}
 
 			return View(obj);
@@ -40,16 +42,27 @@ namespace SiGEv.Controllers
 		{
 			if (id == null)
 			{
-				return NotFound();
+				return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return NotFound();
+				return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
 			}
 
 			return View(obj);
+		}
+
+		public IActionResult Error(string message)
+		{
+			var viewModel = new ErrorViewModel
+			{
+				Message = message,
+				RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+			};
+
+			return View(viewModel);
 		}
 	}
 }
