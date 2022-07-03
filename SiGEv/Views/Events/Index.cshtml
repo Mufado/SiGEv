@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SiGEv.Models.Event>
+@model IEnumerable<SiGEv.Models.Event>
 
 @{
     ViewData["Title"] = "Eventos";
@@ -14,10 +14,16 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Venue)
+                @Html.DisplayNameFor(model => model.Venue.Adress)
+            </th>
+			 <th>
+                @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
+            </th>
+			<th>
+                
             </th>
         </tr>
     </thead>
@@ -31,8 +37,15 @@
                 <td>
                     @Html.DisplayFor(x => item.Venue.Adress)
                 </td>
+				<td>
+                    @Html.DisplayFor(x => item.Type)
+                </td>
                 <td>
                     @Html.DisplayFor(x => item.Date)
+                </td>
+				<td>
+					<a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="Buy" asp-route-id="@item.Id">Comprar</a>
                 </td>
             </tr>
         }
