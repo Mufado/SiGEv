@@ -9,60 +9,70 @@
 <div class="container p-0">
 	<div class="row align-items-start">
 		<div class="col-8">
-			<hr />
-			<h5>Detalhes do Evento</h5>
-			<dl class="row">
-				<dt class="col-sm-4">
-					@Html.DisplayNameFor(model=>model.Date)
-				</dt>
-				<dd class="col-sm-8">
-					@Html.DisplayFor(model=>model.Date)
-				</dd>
-				<dt class="col-sm-4">
-					@Html.DisplayNameFor(model=>model.Type)
-				</dt>
-				<dd class="col-sm-8">
-					@Html.DisplayFor(model=>model.Type)
-				</dd>
-				<dt class="col-sm-4">
-					@Html.DisplayNameFor(model=>model.Venue.Adress)
-				</dt>
-				<dd class="col-sm-8">
-					@Html.DisplayFor(model=>model.Venue.Adress)
-				</dd>
-			</dl>
-			<hr/>
+			<div class="card" >
+			  <ul class="list-group list-group-flush">
 
+				<li class="list-group-item">
+					<h5>Detalhes do Evento</h5>
+					<dl class="row">
+						<dt class="col-sm-4">
+							@Html.DisplayNameFor(model=>model.Date)
+						</dt>
+						<dd class="col-sm-8">
+							@Html.DisplayFor(model=>model.Date)
+						</dd>
+						<dt class="col-sm-4">
+							@Html.DisplayNameFor(model=>model.Type)
+						</dt>
+						<dd class="col-sm-8">
+							@Html.DisplayFor(model=>model.Type)
+						</dd>
+						<dt class="col-sm-4">
+							@Html.DisplayNameFor(model=>model.Venue.Adress)
+						</dt>
+						<dd class="col-sm-8">
+							@Html.DisplayFor(model=>model.Venue.Adress)
+						</dd>
+					</dl>
+				</li>
 
-			<form asp-action="Buy">
-				<div class="form-group">
-					<h5>Quantidade de Ingresso</h5>
-					<div class="input-group mb-3">
-					  <span class="input-group-text" id="basic-addon1">Ingressos</span>
-					  <input type="number" class="form-control" placeholder="1" min="1" aria-label="Ingressos" aria-describedby="basic-addon1">
+				<li class="list-group-item">
+					<form asp-action="Buy">
+						<div class="form-group">
+							<h5>Quantidade de Ingresso</h5>
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="basic-addon1">Ingressos</span>
+							  <input type="number" class="form-control" placeholder="1" min="1" aria-label="Ingressos" aria-describedby="basic-addon1">
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Metodo de Pagamento</h5>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="credit">
+							  <label class="form-check-label" for="inlineRadio1">Cartão de Crédito</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="debit">
+							  <label class="form-check-label" for="inlineRadio2">Cartão de Debito</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="money">
+							  <label class="form-check-label" for="inlineRadio3">Dinheiro</label>
+							</div>
+						</div>
+					</form>
+				</li>
+			  </ul>
+
+			  <div class="card-footer">
+				<div class="d-flex justify-content-end">
+					<div>
+						<h6>Valor da Compra</h6>
+						<p class="m-0">R$ 00.000</p>
 					</div>
 				</div>
-				<div class="form-group">
-					<h5>Metodo de Pagamento</h5>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="credit">
-					  <label class="form-check-label" for="inlineRadio1">Cartão de Crédito</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="debit">
-					  <label class="form-check-label" for="inlineRadio2">Cartão de Debito</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="money">
-					  <label class="form-check-label" for="inlineRadio3">Dinheiro</label>
-					</div>
-				</div>
-
-			</form>
-			
-
-
-			
+			  </div>
+			</div>
 		</div>
 
 		<div class="col-4">
@@ -77,8 +87,10 @@
 					<h6>Número do Protocolo</h6>
 					<p>XXXXX</p>
 
-					<h6>Valor da Compra</h6>
+					<h6>Total da Compra</h6>
+					<small class="text-muted">Valor acrescido da taxa de serviço de 5%</small>
 					<p>R$ 00.000</p>
+					
 
 					<h6>Metodo de Pagamento selecionado</h6>
 					<p>XXX</p>
