@@ -18,5 +18,10 @@ namespace SiGEv.Services
 		{
 			return _context.Venues.OrderBy(x=> x.Adress).ToList();
 		}
+
+		public Venue FindById(int id)
+		{
+			return _context.Venues.FirstOrDefault(x => x.Id == id);
+		}
 	}
 }

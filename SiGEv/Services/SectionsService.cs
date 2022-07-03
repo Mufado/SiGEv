@@ -18,5 +18,11 @@ namespace SiGEv.Services
 		{
 			return _context.Sections.ToList();
 		}
+
+		public List<Section> FindAllEventsById(int eventId)
+		{
+			var x = _context.Sections.Where(x => x.Id == eventId);
+			return x.ToList();
+		}
 	}
 }
