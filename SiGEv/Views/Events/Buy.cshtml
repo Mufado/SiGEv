@@ -1,10 +1,10 @@
-@model SiGEv.Models.Event
+@model SiGEv.Models.ViewModels.EventFormViewModel
 @{
 	 ViewData["Title"] = "Comprar";
 }
 
 <h6>Comprar Ingresso</h6>
-<h1>@Html.DisplayFor(model=>model.Title)</h1>
+<h1>@Html.DisplayFor(model=>model.Event.Title)</h1>
 
 <div class="container p-0">
 	<div class="row align-items-start">
@@ -16,16 +16,16 @@
 					<h5>Detalhes do Evento</h5>
 					<dl class="row">
 						<dt class="col-sm-4">
-							@Html.DisplayNameFor(model=>model.Date)
+							@Html.DisplayNameFor(model=>model.Event.Date)
 						</dt>
 						<dd class="col-sm-8">
-							@Html.DisplayFor(model=>model.Date)
+							@Html.DisplayFor(model=>model.Event.Date)
 						</dd>
 						<dt class="col-sm-4">
-							@Html.DisplayNameFor(model=>model.Type)
+							@Html.DisplayNameFor(model=>model.Event.Type)
 						</dt>
 						<dd class="col-sm-8">
-							@Html.DisplayFor(model=>model.Type)
+							@Html.DisplayFor(model=>model.Event.Type)
 						</dd>
 						<dt class="col-sm-4">
 							@Html.DisplayNameFor(model=>model.Venue.Adress)
@@ -39,10 +39,17 @@
 				<li class="list-group-item">
 					<form asp-action="Buy">
 						<div class="form-group">
-							<h5>Quantidade de Ingresso</h5>
+							<h5>Seção</h5>
 							<div class="input-group mb-3">
-							  <span class="input-group-text" id="basic-addon1">Ingressos</span>
-							  <input type="number" class="form-control" placeholder="1" min="1" aria-label="Ingressos" aria-describedby="basic-addon1">
+							  <span></span>
+							  <select></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Quantidade de Ingressos</h5>
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="quantityTickets">Ingressos</span>
+							  <input type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
 							</div>
 						</div>
 						<div class="form-group">
@@ -53,11 +60,18 @@
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="debit">
-							  <label class="form-check-label" for="inlineRadio2">Cartão de Debito</label>
+							  <label class="form-check-label" for="inlineRadio2">Cartão de Débito</label>
 							</div>
 							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="money">
 							  <label class="form-check-label" for="inlineRadio3">Dinheiro</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<h5>Parcelas[Exibir se for escolhido credito]</h5>
+							<div class="input-group mb-3">
+							  <span class="input-group-text" id="numberParcelas">Numero de Parcelas</span>
+							  <input type="number" class="form-control" placeholder="1" min="1" max="12" aria-label="Numero de Parcelas" aria-describedby="numberParcelas">
 							</div>
 						</div>
 					</form>
@@ -82,7 +96,7 @@
 				</div>
 				<div class="card-body">
 					<h6>Evento</h6>
-					<p>@Model.Title</p>
+					<p>@Model.Event.Title</p>
 
 					<h6>Número do Protocolo</h6>
 					<p>XXXXX</p>
@@ -93,6 +107,7 @@
 					
 
 					<h6>Metodo de Pagamento selecionado</h6>
+					<small class="text-muted">[Exibir se for escolhido credito]Parcelado em X vezes</small>
 					<p>XXX</p>
 
 					<h6>Data da Compra</h6>

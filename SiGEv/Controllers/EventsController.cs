@@ -7,14 +7,19 @@ using System.Diagnostics;
 
 namespace SiGEv.Controllers
 {
-    public class EventsController : Controller
+	public class EventsController : Controller
     {
         private readonly EventsService _eventServices;
+        private readonly VenuesService _venueServices;
+        private readonly SectionsService _sectionsServices;
 
-        public EventsController(EventsService eventServices)
+        public EventsController(EventsService eventServices, VenuesService venueServices, SectionsService sectionsServices)
         {
             _eventServices = eventServices;
-        }
+			_venueServices = venueServices;
+			_sectionsServices = sectionsServices;
+
+		}
 
         public IActionResult Index()
         {
@@ -26,13 +31,13 @@ namespace SiGEv.Controllers
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new {message= "Id n„o fornecido" });
+				return RedirectToAction(nameof(Error), new {message= "Id n√£o fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o encontrado" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o encontrado" });
 			}
 
 			return View(obj);
@@ -42,16 +47,19 @@ namespace SiGEv.Controllers
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o fornecido" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o fornecido" });
 			}
 
-			var obj = _eventServices.FindById(id.Value);
-			if (obj == null)
+			var ev = _eventServices.FindById(id.Value);
+			if (ev == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o encontrado" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o encontrado" });
 			}
 
-			return View(obj);
+			var sections = _sectionsServices.FindAllEventsById(ev.Id);
+			var venue = _venueServices.FindById(ev.VenueId);
+			var viewModel = new EventFormViewModel {Event = ev, Venue = venue, Sections = sections };
+			return View(viewModel);
 		}
 
 		public IActionResult Error(string message)
