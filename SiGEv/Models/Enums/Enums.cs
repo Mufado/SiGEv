@@ -1,4 +1,4 @@
-﻿
+
 using System.ComponentModel.DataAnnotations;
 
 namespace SiGEv.Models.Enums
@@ -36,14 +36,20 @@ namespace SiGEv.Models.Enums
         }
         public enum PaymentType
         {
-            Card
+			Money,
+            CreditCard,
+			DebitCard,
         }
         public enum BillType
         {
-            InCash = 0,
-            Installment3X = 1,
-            Installment6X = 2,
-            Installment12X = 3
+			[Display (Name = "A vista")]
+            InCash,
+			[Display(Name = "3x vezes")]
+			Installment3X,
+			[Display(Name = "6x vezes")]
+			Installment6X,
+			[Display(Name = "12x vezes")]
+			Installment12X,
         }
     }
 }

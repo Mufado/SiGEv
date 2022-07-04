@@ -1,3 +1,4 @@
+@using static SiGEv.Models.Enums.Enums
 @model SiGEv.Models.ViewModels.EventFormViewModel
 @{
 	 ViewData["Title"] = "Comprar";
@@ -55,6 +56,10 @@
 						<div class="form-group">
 							<h5>Metodo de Pagamento</h5>
 							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="money" checked>
+							  <label class="form-check-label" for="inlineRadio3">Dinheiro</label>
+							</div>
+							<div class="form-check form-check-inline">
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="credit">
 							  <label class="form-check-label" for="inlineRadio1">Cartão de Crédito</label>
 							</div>
@@ -62,21 +67,17 @@
 							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="debit">
 							  <label class="form-check-label" for="inlineRadio2">Cartão de Débito</label>
 							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="money">
-							  <label class="form-check-label" for="inlineRadio3">Dinheiro</label>
-							</div>
 						</div>
 						<div class="form-group">
 							<h5>Parcelas[Exibir se for escolhido credito]</h5>
 							<div class="input-group mb-3">
-							  <span class="input-group-text" id="numberParcelas">Numero de Parcelas</span>
-							  <input type="number" class="form-control" placeholder="1" min="1" max="12" aria-label="Numero de Parcelas" aria-describedby="numberParcelas">
+								<label class="control-label"></label>
+								<select asp-items="Html.GetEnumSelectList<BillType>()" class="form-control"></select>
 							</div>
 						</div>
 					</form>
 				</li>
-			  </ul>
+			</ul>
 
 			  <div class="card-footer">
 				<div class="d-flex justify-content-end">
