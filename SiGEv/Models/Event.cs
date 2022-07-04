@@ -21,6 +21,7 @@ namespace SiGEv.Models
         public EventType Type { get; set; }
 
         [ForeignKey("Venue")]
+		[Display(Name = "Endereço")]
         public int VenueId { get; set; }
         public Venue Venue { get; set; }
 

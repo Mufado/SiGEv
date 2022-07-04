@@ -7,31 +7,35 @@ using System.Diagnostics;
 
 namespace SiGEv.Controllers
 {
-    public class EventsController : Controller
-    {
-        private readonly EventsService _eventServices;
+	public class EventsController : Controller
+	{
+		private readonly EventsService _eventServices;
+		private readonly VenuesService _venueServices;
 
-        public EventsController(EventsService eventServices)
-        {
-            _eventServices = eventServices;
-        }
+		public EventsController(EventsService eventServices, VenuesService venueServices)
+		{
+			_eventServices = eventServices;
+			_venueServices = venueServices;
+		}
 
-        public IActionResult Index()
-        {
-            List<Event> events = _eventServices.GetAllEvents();
-            return View(events);
-        }
+		public IActionResult Index()
+		{
+			List<Event> events = _eventServices.GetAllEvents();
+			return View(events);
+		}
 
 		public IActionResult Create()
 		{
-			return View();
+			var venues= _venueServices.GetAllVenues();
+			var viewModel = new EventFormViewModel { Venues = venues };
+			return View(viewModel);
 		}
 
 		public IActionResult Details(int? id)
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new {message= "Id não fornecido" });
+				return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
@@ -69,6 +73,5 @@ namespace SiGEv.Controllers
 
 			return View(viewModel);
 		}
-
 	}
 }

@@ -45,6 +45,7 @@ namespace SiGEv
 
             services.AddScoped<SeedingService>();
             services.AddScoped<EventsService>();
+            services.AddScoped<VenuesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

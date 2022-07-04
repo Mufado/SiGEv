@@ -1,4 +1,4 @@
-@model SiGEv.Models.Event
+@model SiGEv.Models.ViewModels.EventFormViewModel
 
 @{
 	ViewData["Title"] = "Criar Evento";
@@ -11,19 +11,22 @@
 	<div class="col-md-4">
 		<form asp-action="Create">
 			<div class="form-group">
-				<label asp-for="Title" class="control-label"></label>
-				<input asp-for="Title" class="form-control" />
+				<label asp-for="Event.Title" class="control-label"></label>
+				<input asp-for="Event.Title" class="form-control" />
 			</div>
 			<div class="form-group">
-				<label asp-for="Date" class="control-label"></label>
-				<input asp-for="Date" class="form-control" />
+				<label asp-for="Event.Date" class="control-label"></label>
+				<input asp-for="Event.Date" class="form-control" />
 			</div>
 			<div class="form-group">
-				<label asp-for="Type" class="control-label"></label>
-				<input asp-for="Type" class="form-control" />
+				<label asp-for="Event.Type" class="control-label"></label>
+				<input asp-for="Event.Type" class="form-control" />
+			</div><div class="form-group">
+				<label asp-for="Event.VenueId" class="control-label"></label>
+				<select asp-for="Event.VenueId" class="form-control" asp-items="@(new SelectList(Model.Venues, "Id", "Adress"))"></select>
 			</div>
 			<div class="form-group">
-				<button type="submit" value="Create" class="btn btn-primary">Salvar</button>
+				<button type="submit" value="Create" formmethod="post" class="btn btn-primary">Salvar</button>
 				<a class="btn btn-outline-secondary" asp-action="Index">Cancelar</a>
 			</div>
 		</form>
