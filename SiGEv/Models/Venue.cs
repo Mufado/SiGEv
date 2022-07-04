@@ -1,15 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace SiGEv.Models
 {
     public class Venue
     {
         public int Id { get; set; }
+		[Display(Name = "Total de Assentos")]
         public int TotalSeats { get; set; }
 
         [Display(Name = "Endereço")]
         public string Adress { get; set; }
-        public string Description { get; set; }
+		[Display(Name = "Descrição")]
+		public string Description { get; set; }
 
         public Venue()
         {
