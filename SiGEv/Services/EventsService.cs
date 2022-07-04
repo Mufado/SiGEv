@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SiGEv.Services
 {
@@ -27,6 +28,7 @@ namespace SiGEv.Services
 			return _context.Events.Include(obj=>obj.Venue).FirstOrDefault(ev=> ev.Id == id);
 		}
 
+		[Authorize(Policy = "Employee")]
 		public void Insert(Event obj)
 		{
 			_context.Add(obj);

@@ -76,9 +76,9 @@ namespace SiGEv.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create(Event ev)
+		public IActionResult Create(EventFormViewModel ev)
 		{
-			_eventServices.Insert(ev);
+			_eventServices.Insert(ev.Event);
 			return RedirectToAction(nameof(Index));
 		}
 	}
