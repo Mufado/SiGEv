@@ -21,7 +21,7 @@ namespace SiGEv.Services
 
 		public List<Section> FindAllEventsById(int eventId)
 		{
-			var x = _context.Sections.Where(x => x.Id == eventId);
+			var x = _context.Sections.Where(x => x.EventId == eventId);
 			return x.ToList();
 		}
 	}

@@ -50,7 +50,7 @@ namespace SiGEv.Controllers
 				return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
 			}
 
-			var ev = _eventServices.FindById(id.Value);
+		 	var ev = _eventServices.FindById(id.Value);
 			if (ev == null)
 			{
 				return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
