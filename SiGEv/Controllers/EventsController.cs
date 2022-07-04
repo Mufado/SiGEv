@@ -73,5 +73,12 @@ namespace SiGEv.Controllers
 
 			return View(viewModel);
 		}
+
+		[HttpPost]
+		public IActionResult Create(Event event)
+		{
+			_eventServices.Insert(event);
+			return RedirectToAction(nameof(Index));
+		}
 	}
 }
