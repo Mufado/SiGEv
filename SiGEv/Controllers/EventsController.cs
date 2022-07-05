@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Models.ViewModels;
@@ -7,32 +8,42 @@ using System.Diagnostics;
 
 namespace SiGEv.Controllers
 {
-    public class EventsController : Controller
-    {
-        private readonly EventsService _eventServices;
+	public class EventsController : Controller
+	{
+		private readonly EventsService _eventServices;
+		private readonly VenuesService _venueServices;
 
-        public EventsController(EventsService eventServices)
-        {
-            _eventServices = eventServices;
-        }
+		public EventsController(EventsService eventServices, VenuesService venueServices)
+		{
+			_eventServices = eventServices;
+			_venueServices = venueServices;
+		}
 
-        public IActionResult Index()
-        {
-            List<Event> events = _eventServices.GetAllEvents();
-            return View(events);
-        }
+		public IActionResult Index()
+		{
+			List<Event> events = _eventServices.GetAllEvents();
+			return View(events);
+		}
+
+		[Authorize(Policy = "EmployeeAccess")]
+		public IActionResult Create()
+		{
+			var venues = _venueServices.GetAllVenues();
+			var viewModel = new EventFormViewModel { Venues = venues };
+			return View(viewModel);
+		}
 
 		public IActionResult Details(int? id)
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new {message= "Id n„o fornecido" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o encontrado" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o encontrado" });
 			}
 
 			return View(obj);
@@ -42,13 +53,13 @@ namespace SiGEv.Controllers
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o fornecido" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
 			if (obj == null)
 			{
-				return RedirectToAction(nameof(Error), new { message = "Id n„o encontrado" });
+				return RedirectToAction(nameof(Error), new { message = "Id n√£o encontrado" });
 			}
 
 			return View(obj);
@@ -63,6 +74,15 @@ namespace SiGEv.Controllers
 			};
 
 			return View(viewModel);
+		}
+
+		[HttpPost]
+		[Authorize(Policy = "EmployeeAccess")]
+		[ValidateAntiForgeryToken]
+		public IActionResult Create(EventFormViewModel ev)
+		{
+			_eventServices.Insert(ev.Event);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

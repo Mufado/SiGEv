@@ -30,19 +30,30 @@
 					@Html.DisplayFor(model=>model.Venue.Adress)
 				</dd>
 			</dl>
+
 		</div>
 
 		<div class="col-4">
 			<div class="card">
 				<div class="card-header">
-					Detalhes da Compra
+					<h5>Detalhes da Compra</h5></4>
 				</div>
 				<div class="card-body">
+					<h6>Evento</h6>
+					<p>@Model.Title</p>
 
+					<h6>Valor da Compra</h6>
+					<p>R$ 00.000</p>
+
+					<h6>Metodo de Pagamento</h6>
+					<p>Cartão de Crédito</p>
 
 					<button type="button" class="btn btn-primary">Comprar</button>
 					<a class="btn btn-outline-danger" asp-area="" asp-controller="Events" asp-action="Index">Cancelar</a>
 				 </div>
+				 <div class="card-footer">
+					Após a compra não é possível fazer o cancelamento.
+				</div>
 			</div>
 		</div>
 	</div>
