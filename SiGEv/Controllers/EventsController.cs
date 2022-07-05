@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Models.ViewModels;
@@ -24,9 +25,10 @@ namespace SiGEv.Controllers
 			return View(events);
 		}
 
+		[Authorize(Policy = "EmployeeAccess")]
 		public IActionResult Create()
 		{
-			var venues= _venueServices.GetAllVenues();
+			var venues = _venueServices.GetAllVenues();
 			var viewModel = new EventFormViewModel { Venues = venues };
 			return View(viewModel);
 		}
@@ -75,6 +77,7 @@ namespace SiGEv.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Policy = "EmployeeAccess")]
 		[ValidateAntiForgeryToken]
 		public IActionResult Create(EventFormViewModel ev)
 		{
