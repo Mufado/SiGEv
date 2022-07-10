@@ -1,0 +1,83 @@
+﻿@model SiGEv.Models.ViewModels.ReportsFormViewModel;
+
+@{
+    ViewData["Title"] = "Relatórios";
+}
+<h1>@ViewData["Title"]</h1>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a href="#tabProfitByDate" class="nav-link active" id="linkFormulario" data-toggle="tab" role="tab" aria-controls="tabProfitByDate">Lucro Por Data</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a href="#tabProfitByEvent" class="nav-link" id="linkFormulario" data-toggle="tab" role="tab" aria-controls="tabProfitByDate">Lucro Por Evento</a>
+    </li>
+</ul>
+<div class="tab-content" id="myReports">
+    <div class="tab-pane fade show active" id="tabProfitByDate" role="tabpanel" aria-labelledby="">
+        <nav class="navbar navbar-dark">
+            <div class="container-fluid">
+                <form class="form-check navbar-light container">
+                    <div class="form-group row m-0 align-items-center">
+                        <div class="form-group col-4 p-0 pl-2">
+                            <label for="start">Data de Início da Busca</label>
+                            <input type="date" class="form-control" name="start" />
+                        </div>
+                        <div class="form-group col-4 p-0 pl-2">
+                            <label for="end">Data de Termino da Busca</label>
+                            <input type="date" class="form-control" name="end" />
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </nav>
+        <div class="modal-title">Valor Total de Vendas = @Model.ListBills.Sum(obj => obj.Value).ToString("F2")</div>
+        <table class="table table-striped table-hover">
+            <thead class="bg-secondary">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Event)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Event.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Section.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Event.Venue.Adress)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var item in Model.Event)
+                    {
+                        <td>
+                            @Html.DisplayFor(x => item.)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.PaymentDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Value)
+                        </td>
+                    }
+
+                    <td>
+                        @Html.DisplayFor(x => item.PaymentDate)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade show active" id="tabProfitByEvent" role="tabpanel" aria-labelledby="">
+
+    </div>
+</div>
+
+    
