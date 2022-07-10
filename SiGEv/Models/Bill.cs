@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static SiGEv.Models.Enums.Enums;
 
@@ -8,7 +9,8 @@ namespace SiGEv.Models
     public class Bill
     {
         public int Id { get; set; }
-        public int Protocol { get; set; }
+		[Display(Name = "Protocolo")]
+		public int Protocol { get; set; }
         public BillType Type { get; set; }
         
         [ForeignKey("User")]
@@ -19,8 +21,10 @@ namespace SiGEv.Models
         public string ClientName { get; set; }
         public ICollection<Ticket> SelledTickets { get; set; } = new List<Ticket>();
         public double Value { get; set; }
+		[Display (Name="Tipo de Pagamento")]
         public PaymentType PaymentType { get; set; }
-        public DateTime PaymentDate { get; set; }
+		[Display(Name = "Data de Pagamento")]
+		public DateTime PaymentDate { get; set; }
 
         public Bill()
         {

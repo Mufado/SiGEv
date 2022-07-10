@@ -18,5 +18,16 @@ namespace SiGEv.Services
 		{
 			return _context.Bills.ToList();
 		}
+
+		public Bill FindById(int id)
+		{
+			return _context.Bills.FirstOrDefault(bill => bill.Id == id);
+		}
+
+		public void Insert(Bill obj)
+		{
+			_context.Add(obj);
+			_context.SaveChanges();
+		}
 	}
 }
