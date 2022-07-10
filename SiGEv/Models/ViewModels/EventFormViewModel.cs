@@ -7,5 +7,6 @@ namespace SiGEv.Models.ViewModels
 		public Event Event { get; set; }
 		public Venue Venue { get; set; }
 		public ICollection<Section> Sections { get; set; }
+		public Bill Bill { get; set; }
 	}
 }
