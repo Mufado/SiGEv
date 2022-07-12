@@ -1,4 +1,4 @@
-﻿@model SiGEv.Models.ViewModels.ReportsFormViewModel;
+@model SiGEv.Models.ViewModels.ReportsFormViewModel;
 
 @{
     ViewData["Title"] = "Relatórios";
@@ -54,24 +54,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    @foreach (var item in Model.Event)
-                    {
-                        <td>
-                            @Html.DisplayFor(x => item.)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(x => item.PaymentDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(x => item.Value)
-                        </td>
-                    }
-
-                    <td>
-                        @Html.DisplayFor(x => item.PaymentDate)
-                    </td>
-                </tr>
+                @foreach (var item in Model.ListEvents)
+                {
+                    <tr>
+						<td>
+							@Html.DisplayFor(x => item.Title)
+						</td>
+						<td>
+							@Html.DisplayFor(x => item.Date)
+						</td>
+						<td>
+							@Html.DisplayFor(x => item.Id)
+						</td>
+						<td>
+							@Html.DisplayFor(x => item.Venue.Adress)
+						</td>
+					</tr>
+                }
             </tbody>
         </table>
     </div>
@@ -80,4 +79,3 @@
     </div>
 </div>
 
-    

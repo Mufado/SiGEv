@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SiGEv.Data;
 using System;
 using System.Collections.Generic;
@@ -24,9 +24,9 @@ namespace SiGEv.Controllers
 
         public async Task<IActionResult> Index(DateTime? date)
         {
-
-            var result = await _reportsService.GetProfitByDatesAsync(date);
-            var viewModel = new ReportsFormViewModel { ListBills = result };
+			var events = _eventsService.GetAllEvents();
+            var bills = await _reportsService.GetProfitByDatesAsync(date);
+            var viewModel = new ReportsFormViewModel { ListBills = bills, ListEvents =events };
 
             return View(viewModel);
         }
