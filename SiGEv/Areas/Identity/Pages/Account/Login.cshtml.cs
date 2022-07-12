@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -49,9 +49,10 @@ namespace SiGEv.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
-            public string Password { get; set; }
+			[Display(Name = "Senha")]
+			public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Lembrar de mim?")]
             public bool RememberMe { get; set; }
         }
 
