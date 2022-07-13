@@ -2,6 +2,7 @@
 @model SiGEv.Models.ViewModels.EventFormViewModel
 @{
 	 ViewData["Title"] = "Comprar";
+	 ViewBag.Protocol=@SiGEv.Utils.StringProtocol.RandomString();
 }
 
 <h6>Comprar Ingresso</h6>
@@ -118,7 +119,7 @@
 					<p>@Model.Event.Title</p>
 
 					<h6>Número do Protocolo</h6>
-					<p>@SiGEv.Utils.StringProtocol.RandomString()</p>
+					<p>@ViewBag.Protocol</p>
 
 					<h6>Total da Compra</h6>
 					<small class="text-muted">Valor acrescido da taxa de serviço de 5%</small>
