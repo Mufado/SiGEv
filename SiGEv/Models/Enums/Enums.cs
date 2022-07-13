@@ -44,8 +44,11 @@ namespace SiGEv.Models.Enums
         }
         public enum PaymentType
         {
+			[Display(Name = "Dinheiro")]
 			Money,
-            CreditCard,
+			[Display(Name = "Cartão de Crédito")]
+			CreditCard,
+			[Display(Name = "Cartão de Débito")]
 			DebitCard,
         }
         public enum BillType
