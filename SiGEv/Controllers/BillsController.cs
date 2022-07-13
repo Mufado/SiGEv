@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SiGEv.Models;
 using SiGEv.Models.ViewModels;
 using SiGEv.Services;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace SiGEv.Controllers
@@ -18,7 +20,8 @@ namespace SiGEv.Controllers
 		[Authorize(Policy = "EmployeeAccess")]
 		public IActionResult Index()
 		{
-			return View(); 
+			List<Bill> bills = _billServices.FindAll();
+			return View(bills);
 		}
 
 		[Authorize(Policy = "CustomerAccess")]
