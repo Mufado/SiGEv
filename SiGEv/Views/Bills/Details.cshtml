@@ -1,0 +1,40 @@
+@model SiGEv.Models.Bill
+@{
+    ViewData["Title"] = "Recibo";
+}
+
+<h6>Informações da Compra</h6>
+<h1>Recibo #@Model.Id </h1>
+
+<div class="container">
+	<div class="row">
+		<table class="table">
+		  <thead>
+			<tr>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Protocol)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.User)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.ClientName)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.ClientDocument)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Value)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.PaymentType)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.PaymentDate)</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <th scope="row">@Html.DisplayFor(model=>model.Protocol)</th>
+			  <td>@Html.DisplayFor(model=>model.User)</td>
+			  <td>@Html.DisplayFor(model=>model.ClientDocument)</td>
+			  <td>@Html.DisplayFor(model=>model.ClientName)</td>
+			  <td>@Html.DisplayFor(model=>model.Value)</td>
+			  <td>@Html.DisplayFor(model=>model.PaymentType)</td>
+			  <td>@Html.DisplayFor(model=>model.PaymentDate)</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		
+	</div>
+</div>
+
+
