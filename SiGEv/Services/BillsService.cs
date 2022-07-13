@@ -24,6 +24,11 @@ namespace SiGEv.Services
 			return _context.Bills.FirstOrDefault(bill => bill.Id == id);
 		}
 
+		public List<Bill> FindByUserId(int id)
+		{
+			return _context.Bills.Where(bill => bill.UserId == id).ToList();
+		}
+
 		public void Insert(Bill obj)
 		{
 			_context.Add(obj);

@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Models.ViewModels;
 using SiGEv.Services;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace SiGEv.Controllers
 {
@@ -14,13 +16,17 @@ namespace SiGEv.Controllers
 		public BillsController(BillsService billServices)
 		{
 			_billServices = billServices;
-
 		}
 
 		[Authorize(Policy = "EmployeeAccess")]
 		public IActionResult Index()
 		{
-			List<Bill> bills = _billServices.FindAll();
+			List<Bill> bills;
+			bills = _billServices.FindAll();
+			/* if (User.IsInRole("Administrator") || User.IsInRole("Employee"))
+			{
+				
+			}*/
 			return View(bills);
 		}
 
