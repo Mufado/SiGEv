@@ -7,6 +7,7 @@ using System.Dynamic;
 using System.Threading.Tasks;
 using SiGEv.Services;
 using SiGEv.Models.ViewModels;
+using SiGEv.Models;
 
 namespace SiGEv.Controllers
 {
@@ -24,11 +25,17 @@ namespace SiGEv.Controllers
 
         public async Task<IActionResult> Index(DateTime? date)
         {
-			var events = _eventsService.GetAllEvents();
-            var bills = await _reportsService.GetProfitByDateAsync(date);
-            var viewModel = new ReportsFormViewModel { ListBills = bills, ListEvents = events };
+			List<Event> events = _eventsService.GetAllEvents();
+            List<Bill> bills = await _reportsService.GetProfitByDateAsync(date);
+
+            ReportsFormViewModel viewModel = new ReportsFormViewModel { ListBills = bills, ListEvents = events };
 
             return View(viewModel);
+        }
+
+        public async Task<IActionResult> EventReport()
+        {
+            return View();
         }
     }
 }

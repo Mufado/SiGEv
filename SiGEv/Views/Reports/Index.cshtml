@@ -15,26 +15,24 @@
 </ul>
 <div class="tab-content" id="myReports">
     <div class="tab-pane fade show active" id="tabProfitByDate" role="tabpanel" aria-labelledby="">
-        <nav class="navbar navbar-dark">
-            <div class="container-fluid">
-                <form class="form-check navbar-light container">
-                    <div class="form-group row m-0 align-items-center">
-                        <div class="form-group col-4 p-0 pl-2">
-                            <label for="start">Data de Início da Busca</label>
-                            <input type="date" class="form-control" name="start" />
-                        </div>
-                        <div class="form-group col-4 p-0 pl-2">
-                            <label for="end">Data de Termino da Busca</label>
-                            <input type="date" class="form-control" name="end" />
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary">Filtrar</button>
-                        </div>
+        <div class="container-fluid">
+            <form class="form-check navbar-light container">
+                <div class="form-group row m-0 align-items-center">
+                    <div class="form-group col-4 p-0 pl-2">
+                        <label for="start">Data de Início da Busca</label>
+                        <input type="date" class="form-control" name="start" />
                     </div>
-                    
-                </form>
-            </div>
-        </nav>
+                    <div class="form-group col-4 p-0 pl-2">
+                        <label for="end">Data de Termino da Busca</label>
+                        <input type="date" class="form-control" name="end" />
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
         <div class="modal-title">Valor Total de Vendas = @Model.ListBills.Sum(obj => obj.Value).ToString("F2")</div>
         <table class="table table-striped table-hover">
             <thead class="bg-secondary">
@@ -57,25 +55,61 @@
                 @foreach (var item in Model.ListEvents)
                 {
                     <tr>
-						<td>
-							@Html.DisplayFor(x => item.Title)
-						</td>
-						<td>
-							@Html.DisplayFor(x => item.Date)
-						</td>
-						<td>
-							@Html.DisplayFor(x => item.Id)
-						</td>
-						<td>
-							@Html.DisplayFor(x => item.Venue.Adress)
-						</td>
-					</tr>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Venue.Adress)
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
     </div>
-    <div class="tab-pane fade show active" id="tabProfitByEvent" role="tabpanel" aria-labelledby="">
+    <div class="tab-pane" id="tabProfitByEvent" role="tabpanel" aria-labelledby="">
+        <table class="table table-striped table-hover">
+            <thead class="bg-secondary">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Event)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Event.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => Model.Event.Venue.Adress)
+                    </th>
+                    <th>
 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListEvents)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Venue.Adress)
+                        </td>
+                        <td>
+                            <button class="btn btn-success w-50" asp-controller="Reports" asp-action="EventReport">Ver fatura</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
