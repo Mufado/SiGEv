@@ -26,7 +26,7 @@ namespace SiGEv.Controllers
         {
 			var events = _eventsService.GetAllEvents();
             var bills = await _reportsService.GetProfitByDatesAsync(date);
-            var viewModel = new ReportsFormViewModel { ListBills = bills, ListEvents =events };
+            var viewModel = new ReportsFormViewModel { ListBills = bills, ListEvents = events };
 
             return View(viewModel);
         }

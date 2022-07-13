@@ -17,13 +17,15 @@ namespace SiGEv.Services
             _context = context;
         }
 
-        public async Task<List<Bill>> GetProfitByDatesAsync(DateTime? dateSearch)
+        public async Task<List<Bill>> GetProfitByDateAndEventIdAsync(DateTime? dateSearch, int eventId)
         {
             var result = from obj in _context.Bills select obj;
 
             if (dateSearch.HasValue)
             {
-                result = result.Where(x => x.PaymentDate >= dateSearch.Value);
+                result = result
+                    .Where(x => x.EventId == eventId)
+                    .Where(x => x.PaymentDate >= dateSearch.Value);
             }
 
             return await result
