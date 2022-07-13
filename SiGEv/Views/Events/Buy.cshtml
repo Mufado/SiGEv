@@ -69,7 +69,7 @@
 									<h5>Quantidade de Ingressos</h5>
 									<div class="input-group mb-3">
 									  <span class="input-group-text" id="quantityTickets">Ingressos</span>
-									  <input type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
+									  <input onchange="valorTotal()" id="qtd_tickets" type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
 									</div>
 								</div>
 							</div>
@@ -105,7 +105,7 @@
 				<div class="d-flex justify-content-end">
 					<div>
 						<h6>Valor da Compra</h6>
-						<p class="m-0">R$ 00.000</p>
+						<p class="m-0" id="ticket_value">@Html.DisplayFor(model=>model.Sections.FirstOrDefault().CommonPrice)</p>
 					</div>
 				</div>
 			  </div>
@@ -126,7 +126,7 @@
 
 					<h6>Total da Compra</h6>
 					<small class="text-muted">Valor acrescido da taxa de serviço de 5%</small>
-					<p>R$ 00.000</p>
+					<p id="valw_rate"></p>
 					
 
 					<h6>Metodo de Pagamento selecionado</h6>
@@ -134,7 +134,7 @@
 					<p id="selectedPaymentMethod">Dinheiro</p>
 
 					<h6>Data da Compra</h6>
-					<p>xx/xx/xxxx</p>
+					<p id="buy_date" ></p>
 
 					<button type="button" class="btn btn-primary">Confirmar Compra</button>
 					<a class="btn btn-outline-danger" asp-area="" asp-controller="Events" asp-action="Index">Cancelar</a>
@@ -147,40 +147,65 @@
 	</div>
 </div>
 
-
 <script>
-
 	var paymentMethod = document.getElementById('paymentMethod');
-	if(paymentMethod){
-		paymentMethod.addEventListener('change', function() {
-			var radios = document.getElementsByName("paymentMethod");
-			var selectedPaymentMethod = document.getElementById("selectedPaymentMethod");
-			for (var i = 0; i < radios.length; i++) {
-			   if (radios[i].checked) {
-				   if (i == 0) selectedPaymentMethod.innerHTML = "Dinheiro";
-				   if (i == 1) selectedPaymentMethod.innerHTML = "Cartão de Crédito";
-				   if (i == 2) selectedPaymentMethod.innerHTML = "Cartão de Débito";
-				}
+	if (paymentMethod) {
+	paymentMethod.addEventListener('change', function () {
+		var radios = document.getElementsByName("paymentMethod");
+		var selectedPaymentMethod = document.getElementById("selectedPaymentMethod");
+		for (var i = 0; i < radios.length; i++) {
+			if (radios[i].checked) {
+				if (i == 0) selectedPaymentMethod.innerHTML = "Dinheiro";
+				if (i == 1) selectedPaymentMethod.innerHTML = "Cartão de Crédito";
+				if (i == 2) selectedPaymentMethod.innerHTML = "Cartão de Débito";
 			}
-		});
-		paymentMethod.addEventListener('change', function() {
-			var radios = document.getElementsByName("paymentMethod");
-			var parcelas = document.getElementById("parcelas");
-			var detailsParcelas = document.getElementById("detailsParcelas");
-            radios.forEach(r => {
-                if (r.checked && r.id == "paymentMethodCredit") {
-					parcelas.classList.remove("d-none");
-					detailsParcelas.classList.remove("d-none");
-				}
-				if(r.checked && r.id!="paymentMethodCredit"){
-					parcelas.classList.add("d-none");
-					detailsParcelas.classList.add("d-none");
-				}
-			})
+		}
+	});
 
-		});
-	}
-	
+	paymentMethod.addEventListener('change', function () {
+		var radios = document.getElementsByName("paymentMethod");
+		var parcelas = document.getElementById("parcelas");
+		var detailsParcelas = document.getElementById("detailsParcelas");
+		radios.forEach(r => {
+			if (r.checked && r.id == "paymentMethodCredit") {
+				parcelas.classList.remove("d-none");
+				detailsParcelas.classList.remove("d-none");
+			}
+			if (r.checked && r.id != "paymentMethodCredit") {
+				parcelas.classList.add("d-none");
+				detailsParcelas.classList.add("d-none");
+			}
+		})
 
+	});
+}
+
+var valorTaxado = document.getElementById("valw_rate");
+
+var valorCompra = document.getElementById("ticket_value");//Valor do bilhete
+var valorBilhete = parseFloat(valorCompra.innerText);;
+var qtdTickets;
+var totalCompra;
+
+function valorTotal(){
+	qtdTickets = parseInt(document.getElementById("qtd_tickets").value);
+
+	console.log(valorBilhete)
+
+	totalCompra = 0;
+
+	totalCompra = qtdTickets * valorBilhete;
+	valorCompra.innerText = `${totalCompra}`;
+
+	var total = totalCompra + (totalCompra * 0.05);
+	valorTaxado.innerText = `${total}`
+}
+
+
+var dataCompra = document.getElementById("buy_date")
+
+var date = new Date()
+var today = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+dataCompra.innerText = `${today}`;
 
 </script>
