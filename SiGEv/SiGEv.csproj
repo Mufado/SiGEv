@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\HomeController1.cs" />
+    <Compile Remove="Migrations\20220713001322_EventToBill.cs" />
+    <Compile Remove="Migrations\20220713001322_EventToBill.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

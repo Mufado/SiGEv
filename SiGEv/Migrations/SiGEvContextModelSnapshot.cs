@@ -165,9 +165,6 @@ namespace SiGEv.Migrations
                     b.Property<string>("ClientName")
                         .HasColumnType("text");
 
-                    b.Property<int>("EventId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("timestamp without time zone");
 
@@ -187,8 +184,6 @@ namespace SiGEv.Migrations
                         .HasColumnType("double precision");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EventId");
 
                     b.HasIndex("UserId");
 
@@ -231,14 +226,14 @@ namespace SiGEv.Migrations
                     b.Property<double>("CommonPrice")
                         .HasColumnType("double precision");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("interval");
 
                     b.Property<int>("EventId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("interval");
 
                     b.HasKey("Id");
 
@@ -441,12 +436,6 @@ namespace SiGEv.Migrations
 
             modelBuilder.Entity("SiGEv.Models.Bill", b =>
                 {
-                    b.HasOne("SiGEv.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SiGEv.Models.User", "User")
                         .WithMany("Bills")
                         .HasForeignKey("UserId")
