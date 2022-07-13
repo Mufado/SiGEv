@@ -11,6 +11,12 @@ namespace SiGEv.Models.Enums
             Employee = 1,
             Admin = 2 
         }
+
+		public enum DocumentType
+		{
+			RG = 0,
+			CPF = 1
+		}
         public enum PersonGender
         {
             [Display(Name = "Masculino")]
