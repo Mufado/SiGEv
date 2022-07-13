@@ -14,7 +14,9 @@ namespace SiGEv.Models.Enums
 
 		public enum DocumentType
 		{
+			[Display(Name = "RG")]
 			RG = 0,
+			[Display(Name = "CPF")]
 			CPF = 1
 		}
         public enum PersonGender
