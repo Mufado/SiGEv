@@ -91,7 +91,7 @@
 							<h5>Parcelas</h5>
 							<div class="input-group mb-3">
 								<label class="control-label"></label>
-								<select asp-items="Html.GetEnumSelectList<BillType>()" class="form-control selectedParcelas"></select>
+								<select onchange="qtdParc()" id="qtdParcelas" asp-items="Html.GetEnumSelectList<BillType>()" class="form-control selectedParcelas"></select>
 							</div>
 						</div>
 					</form>
@@ -163,10 +163,15 @@
 		var radios = document.getElementsByName("paymentMethod");
 		var parcelas = document.getElementById("parcelas");
 		var detailsParcelas = document.getElementById("detailsParcelas");
+		
+
+		
 		radios.forEach(r => {
 			if (r.checked && r.id == "paymentMethodCredit") {
 				parcelas.classList.remove("d-none");
 				detailsParcelas.classList.remove("d-none");
+
+                
 			}
 			if (r.checked && r.id != "paymentMethodCredit") {
 				parcelas.classList.add("d-none");
@@ -176,6 +181,23 @@
 
 	});
 }
+
+function qtdParc(){
+    var select = document.getElementById("qtdParcelas");
+	var option = select.children[select.selectedIndex];
+	var texto = option.textContent;
+    console.log(texto);
+
+    var textDetParcelas = document.getElementById("detailsParcelas");
+
+	if(texto != "A vista"){
+		textDetParcelas.innerText = `Parcelado em ${texto}`
+	}else{
+		textDetParcelas.innerText = `${texto}`
+	}
+}
+
+
 
 var valorTaxado = document.getElementById("valw_rate");
 
