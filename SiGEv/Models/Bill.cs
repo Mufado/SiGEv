@@ -15,10 +15,6 @@ namespace SiGEv.Models
         public int UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey("Event")]
-        public int EventId { get; set; }
-        public Event Event { get; set; }
-
         public string ClientDocument { get; set; }
         public string ClientName { get; set; }
         public ICollection<Ticket> SelledTickets { get; set; } = new List<Ticket>();

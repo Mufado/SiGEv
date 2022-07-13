@@ -25,7 +25,7 @@ namespace SiGEv.Controllers
         public async Task<IActionResult> Index(DateTime? date)
         {
 			var events = _eventsService.GetAllEvents();
-            var bills = await _reportsService.GetProfitByDatesAsync(date);
+            var bills = await _reportsService.GetProfitByDateAsync(date);
             var viewModel = new ReportsFormViewModel { ListBills = bills, ListEvents = events };
 
             return View(viewModel);
