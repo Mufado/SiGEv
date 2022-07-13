@@ -12,12 +12,15 @@ namespace SiGEv.Controllers
         private readonly EventsService _eventServices;
         private readonly VenuesService _venueServices;
         private readonly SectionsService _sectionsServices;
+        private readonly BillsService _billServices;
 
-        public EventsController(EventsService eventServices, VenuesService venueServices, SectionsService sectionsServices)
+        public EventsController(EventsService eventServices, VenuesService venueServices,
+			SectionsService sectionsServices, BillsService billServices)
         {
             _eventServices = eventServices;
 			_venueServices = venueServices;
 			_sectionsServices = sectionsServices;
+			_billServices = billServices;
 
 		}
 
@@ -60,6 +63,14 @@ namespace SiGEv.Controllers
 			var venue = _venueServices.FindById(ev.VenueId);
 			var viewModel = new EventFormViewModel {Event = ev, Venue = venue, Sections = sections };
 			return View(viewModel);
+		}
+
+		[HttpPost]
+		public IActionResult Buy(Bill ?obj)
+		{
+			//_billServices.Insert(obj);
+			
+			return RedirectToAction("Details", "Bills", new { id = 1 });
 		}
 
 		public IActionResult Error(string message)

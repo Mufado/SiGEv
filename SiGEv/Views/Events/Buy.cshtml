@@ -39,7 +39,7 @@
 				</li>
 
 				<li class="list-group-item">
-					<form asp-action="Buy">
+					<form asp-action="Buy" method="post" id="buy">
 						<div>
 							<h5>Nome e Documento</h5>
 							<div class="input-group mb-3">
@@ -133,7 +133,7 @@
 					<h6>Data da Compra</h6>
 					<p id="buy_date" ></p>
 
-					<button type="button" class="btn btn-primary">Confirmar Compra</button>
+					<button type="submit" value="submit" class="btn btn-primary" form="buy">Confirmar Compra</button>
 					<a class="btn btn-outline-danger" asp-area="" asp-controller="Events" asp-action="Index">Cancelar</a>
 				 </div>
 				 <div class="card-footer text-muted">
