@@ -1,8 +1,9 @@
 @using static SiGEv.Models.Enums.Enums
 @model SiGEv.Models.ViewModels.EventFormViewModel
 @{
-	 ViewData["Title"] = "Comprar";
-	 ViewBag.Protocol=@SiGEv.Utils.StringProtocol.RandomString();
+    ViewData["Title"] = "Comprar";
+    ViewBag.Protocol = @SiGEv.Utils.StringProtocol.RandomString();
+    Model.Bill.Protocol = ViewBag.Protocol;
 }
 
 <h6>Comprar Ingresso</h6>
@@ -59,7 +60,7 @@
 									<h5>Seção</h5>
 									<div class="input-group mb-3">
 										<label class="control-label"></label>
-										<select asp-for="Section" class="form-control" asp-items="@(new SelectList(Model.Sections, "Id", "Id"))"></select>
+										<select asp-for="SectionId" class="form-control" asp-items="@(new SelectList(Model.Sections, "Id", "Id"))"></select>
 									</div>
 								</div>
 								<div class="form-group col-6 pr-0 m-0">

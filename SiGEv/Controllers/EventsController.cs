@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Models.ViewModels;
 using SiGEv.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -59,17 +60,34 @@ namespace SiGEv.Controllers
 				return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
 			}
 
-			var sections = _sectionsServices.FindAllEventsById(ev.Id);
-			var venue = _venueServices.FindById(ev.VenueId);
+			var sections = _sectionsServices.GetSectionListByEventId(ev.Id);
+			var venue = _venueServices.GetVenueById(ev.VenueId);
 			var viewModel = new EventFormViewModel {Event = ev, Venue = venue, Sections = sections };
 			return View(viewModel);
 		}
 
 		[HttpPost]
-		public IActionResult Buy(EventFormViewModel? obj)
+		[ValidateAntiForgeryToken]
+		public IActionResult Buy(EventFormViewModel obj)
 		{
-			//_billServices.Insert(obj);
-			
+			Section section = _sectionsServices.GetSectionById(obj.SectionId);
+
+			double billValue = section.CommonPrice * obj.TicketsQuantity;
+
+			Bill bill = new Bill
+			{
+				ClientName = obj.Bill.ClientName,
+				ClientDocument = obj.Bill.ClientDocument,
+				PaymentType = obj.Bill.PaymentType,
+				DocumentType = obj.Bill.DocumentType,
+				Type = obj.Bill.Type,
+				Protocol = obj.Bill.Protocol,
+				Value = billValue,
+				PaymentDate = DateTime.Now
+			};
+
+			//_billServices.Insert(bill); //Não descomenta ainda pq tá faltando pegar o User
+
 			return RedirectToAction("Details", "Bills", new { id = 1 });
 		}
 
