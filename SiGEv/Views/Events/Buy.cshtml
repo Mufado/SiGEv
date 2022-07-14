@@ -44,12 +44,12 @@
 							<h5>Nome e Documento</h5>
 							<div class="input-group mb-3">
 								<span class="input-group-text" id="clientName">Nome Completo</span>
-								<input type="text" class="form-control" placeholder="" aria-label="Clientname" aria-describedby="clientName">
+								<input asp-for="Bill.ClientName" type="text" class="form-control" placeholder="" aria-label="Clientname" aria-describedby="clientName">
 							</div>
 							<div class="input-group mb-3">
 								<label class="input-group-text" for="inputGroupSelect01">Documento</label>
-								<select asp-items="Html.GetEnumSelectList<DocumentType>()" class="form-control" id="typeDocumentSelect"></select>
-								<input type="text" class="form-control" placeholder="" aria-label="Clientdocument" aria-describedby="Clientdocument">
+								<select asp-for="Bill.DocumentType" asp-items="Html.GetEnumSelectList<DocumentType>()" class="form-control" id="typeDocumentSelect"></select>
+								<input asp-for="Bill.ClientDocument" type="text" class="form-control" placeholder="" aria-label="Clientdocument" aria-describedby="Clientdocument">
 							</div>
 						</div>
 						<hr/>
@@ -59,14 +59,14 @@
 									<h5>Seção</h5>
 									<div class="input-group mb-3">
 										<label class="control-label"></label>
-										<select  class="form-control" asp-items="@(new SelectList(Model.Sections, "Id", "Id"))"></select>
+										<select asp-for="Section" class="form-control" asp-items="@(new SelectList(Model.Sections, "Id", "Id"))"></select>
 									</div>
 								</div>
 								<div class="form-group col-6 pr-0 m-0">
 									<h5>Quantidade de Ingressos</h5>
 									<div class="input-group mb-3">
 									  <span class="input-group-text" id="quantityTickets">Ingressos</span>
-									  <input onchange="valorTotal()" id="qtd_tickets" type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
+									  <input asp-for="TicketsQuantity" onchange="valorTotal()" id="qtd_tickets" type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
 									</div>
 								</div>
 							</div>
@@ -76,14 +76,14 @@
 									<h5>Método de Pagamento</h5>
 									<div class="input-group mb-3">
 										<label class="control-label"></label>
-										<select id="selecDoMet" onchange="payMeth()" asp-items="Html.GetEnumSelectList<PaymentType>()" class="form-control selectedPaymentMethod"></select>
+										<select asp-for="Bill.PaymentType" id="selecDoMet" onchange="payMeth()" asp-items="Html.GetEnumSelectList<PaymentType>()" class="form-control selectedPaymentMethod"></select>
 									</div>
 								</div>
 								<div class="form-group col-6 pl-0 m-0 d-none" id="parcelas">
 									<h5>Parcelas</h5>
 									<div class="input-group mb-3">
 										<label class="control-label"></label>
-										<select onchange="qtdParc()" id="qtdParcelas" asp-items="Html.GetEnumSelectList<BillType>()" class="form-control selectedParcelas"></select>
+										<select asp-for="Bill.Type" onchange="qtdParc()" id="qtdParcelas" asp-items="Html.GetEnumSelectList<BillType>()" class="form-control selectedParcelas"></select>
 									</div>
 								</div>
 							</div>
@@ -165,46 +165,6 @@
         }
 
 	}
-
-
-	/*var paymentMethod = document.getElementsByClassName('selectedPaymentMethod')[0];
-	if (paymentMethod) {
-		paymentMethod.addEventListener('change', function () {
-
-			//var radios = document.getElementsByName("paymentMethod");
-			var selectedPaymentMethod = document.getElementById("selectedPaymentMethod");
-			console.log(selectedPaymentMethod)
-
-			for (var i = 0; i < radios.length; i++) {
-				if (radios[i].checked) {
-					if (i == 0) selectedPaymentMethod.innerHTML = "Dinheiro";
-					if (i == 1) selectedPaymentMethod.innerHTML = "Cartão de Crédito";
-					if (i == 2) selectedPaymentMethod.innerHTML = "Cartão de Débito";
-				}
-			}
-		});
-
-
-
-
-
-		paymentMethod.addEventListener('change', function () {
-			var parcelas = document.getElementsByClassName("selectedParcelas");
-			var detailsParcelas = document.getElementById("detailsParcelas");
-		
-			parcelas.forEach(r => {
-				if (r.checked && r.id == "paymentMethodCredit") {
-					parcelas.classList.remove("d-none");
-					detailsParcelas.classList.remove("d-none");
-				}
-				if (r.checked && r.id != "paymentMethodCredit") {
-					parcelas.classList.add("d-none");
-					detailsParcelas.classList.add("d-none");
-				}
-			})
-
-		});
-	}*/
 
 function qtdParc(){
     var select = document.getElementById("qtdParcelas");

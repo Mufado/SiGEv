@@ -66,7 +66,7 @@ namespace SiGEv.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Buy(Bill ?obj)
+		public IActionResult Buy(EventFormViewModel? obj)
 		{
 			//_billServices.Insert(obj);
 			

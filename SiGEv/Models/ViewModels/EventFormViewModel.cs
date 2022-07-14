@@ -8,5 +8,7 @@ namespace SiGEv.Models.ViewModels
 		public Venue Venue { get; set; }
 		public ICollection<Section> Sections { get; set; }
 		public Bill Bill { get; set; }
-	}
+        public Section Section { get; set; }
+        public int TicketsQuantity { get; set; }
+    }
 }
