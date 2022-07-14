@@ -18,5 +18,16 @@ namespace SiGEv.Services
 		{
 			return _context.Tickets.ToList();
 		}
+
+		public void Insert(Ticket ticket)
+		{
+			_context.Add(ticket);
+			_context.SaveChanges();
+		}
+		public void InsertAll(List<Ticket> tickets)
+		{
+			_context.AddRange(tickets);
+			_context.SaveChanges();
+		}
 	}
 }

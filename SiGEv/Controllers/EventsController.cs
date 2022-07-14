@@ -15,14 +15,16 @@ namespace SiGEv.Controllers
         private readonly VenuesService _venueServices;
         private readonly SectionsService _sectionsServices;
         private readonly BillsService _billServices;
+        private readonly TicketsService _ticketServices;
 
         public EventsController(EventsService eventServices, VenuesService venueServices,
-			SectionsService sectionsServices, BillsService billServices)
+			SectionsService sectionsServices, BillsService billServices, TicketsService ticketServices)
         {
             _eventServices = eventServices;
 			_venueServices = venueServices;
 			_sectionsServices = sectionsServices;
 			_billServices = billServices;
+			_ticketServices = ticketServices;
 
 		}
 
@@ -73,6 +75,7 @@ namespace SiGEv.Controllers
 		public IActionResult Buy(EventFormViewModel obj)
 		{
 			Section section = _sectionsServices.GetSectionById(obj.SectionId);
+			Event ev = _eventServices.FindById(section.Id);
 
 			double billValue = section.CommonPrice * obj.TicketsQuantity;
 
@@ -91,6 +94,20 @@ namespace SiGEv.Controllers
 
 			_billServices.Insert(bill); //Não descomenta ainda pq tá faltando pegar o User
 
+			var tickets= new List<Ticket>();
+			for (int i = 0; i < obj.TicketsQuantity; i++)
+			{
+				tickets.Add(new Ticket {
+					BillId = bill.Id,
+					Bill = bill,
+					Price = section.CommonPrice,
+					VenueId = ev.VenueId,
+					Venue = ev.Venue,
+					SectionId=section.Id,
+					Section=section
+				});
+			}
+			_ticketServices.InsertAll(tickets);
 			return RedirectToAction("Details", "Bills", new { id = bill.Id });
 		}
 
