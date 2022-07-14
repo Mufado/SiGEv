@@ -16,7 +16,9 @@ namespace SiGEv.Models.ViewModels
         public Section Section { get; set; }
     
         public List<Bill> ListBills { get; set; }
+
         public List<Event> ListEvents { get; set; }
+
         public List<Ticket> ListTickets { get; set; }
     }
 }

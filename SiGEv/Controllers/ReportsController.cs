@@ -7,6 +7,7 @@ using System.Dynamic;
 using System.Threading.Tasks;
 using SiGEv.Services;
 using SiGEv.Models.ViewModels;
+using SiGEv.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace SiGEv.Controllers
