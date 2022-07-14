@@ -10,5 +10,6 @@ namespace SiGEv.Models.ViewModels
 		public Bill Bill { get; set; }
         public int SectionId { get; set; }
         public int TicketsQuantity { get; set; }
-    }
+		public string Protocol { get; set; }
+	}
 }

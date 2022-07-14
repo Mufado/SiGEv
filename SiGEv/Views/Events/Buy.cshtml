@@ -2,8 +2,6 @@
 @model SiGEv.Models.ViewModels.EventFormViewModel
 @{
     ViewData["Title"] = "Comprar";
-    ViewBag.Protocol = @SiGEv.Utils.StringProtocol.RandomString();
-    Model.Bill.Protocol = ViewBag.Protocol;
 }
 
 <h6>Comprar Ingresso</h6>
@@ -90,7 +88,13 @@
 							</div>
 						</div>
 						<hr/>
-						
+						<div class="form-group col-6 pl-0 m-0 d-none" id="">
+							<h5>Protocolo</h5>
+							<div class="input-group mb-3">
+								<label class="control-label"></label>
+								<input asp-for="Bill.Protocol" class="form-control" value="@Model.Protocol"></input>
+							</div>
+						</div>
 					</form>
 				</li>
 			</ul>
@@ -116,7 +120,7 @@
 					<p>@Model.Event.Title</p>
 
 					<h6>Número do Protocolo</h6>
-					<p>@ViewBag.Protocol</p>
+					<p>@Model.Protocol</p>
 
 					<h6>Total da Compra</h6>
 					<small class="text-muted">Valor acrescido da taxa de serviço de 5%</small>

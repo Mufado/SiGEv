@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Models.ViewModels;
 using SiGEv.Services;
+using SiGEv.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -62,7 +63,8 @@ namespace SiGEv.Controllers
 
 			var sections = _sectionsServices.GetSectionListByEventId(ev.Id);
 			var venue = _venueServices.GetVenueById(ev.VenueId);
-			var viewModel = new EventFormViewModel {Event = ev, Venue = venue, Sections = sections };
+			var protocol = StringProtocol.RandomString();
+			var viewModel = new EventFormViewModel {Event = ev, Venue = venue, Sections = sections , Protocol=protocol};
 			return View(viewModel);
 		}
 
@@ -81,14 +83,15 @@ namespace SiGEv.Controllers
 				PaymentType = obj.Bill.PaymentType,
 				DocumentType = obj.Bill.DocumentType,
 				Type = obj.Bill.Type,
-				Protocol = obj.Bill.Protocol,
 				Value = billValue,
-				PaymentDate = DateTime.Now
+				PaymentDate = DateTime.Now,
+				Protocol=obj.Bill.Protocol,
+				UserId=2
 			};
 
-			//_billServices.Insert(bill); //Não descomenta ainda pq tá faltando pegar o User
+			_billServices.Insert(bill); //Não descomenta ainda pq tá faltando pegar o User
 
-			return RedirectToAction("Details", "Bills", new { id = 1 });
+			return RedirectToAction("Details", "Bills", new { id = bill.Id });
 		}
 
 		public IActionResult Error(string message)
