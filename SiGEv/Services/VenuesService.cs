@@ -14,9 +14,10 @@ namespace SiGEv.Services
 			_context = context;
 		}
 
-		public List<Venue> GetAllVenues()
+		public List<Venue> FindAll()
 		{
-			return _context.Venues.OrderBy(x=>x.Adress).ToList();
+			return _context.Venues.OrderBy(x=> x.Adress).ToList();
+
 		}
 
 		public Venue FindById(int id)

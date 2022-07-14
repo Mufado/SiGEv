@@ -17,26 +17,30 @@
 
 <div>
 	<hr />
-	<dl class="dl-horizontal">
-		<dt>
+	<dl class="row">
+		<dt class="col-sm-4">
 			@Html.DisplayNameFor(model=>model.Date)
 		</dt>
-		<dd>
+		<dd class="col-sm-8">
 			@Html.DisplayFor(model=>model.Date)
 		</dd>
-		<dt>
+		<dt class="col-sm-4">
 			@Html.DisplayNameFor(model=>model.Type)
 		</dt>
-		<dd>
+		<dd class="col-sm-8">
 			@Html.DisplayFor(model=>model.Type)
 		</dd>
-		<dt>
+		<dt class="col-sm-4">
 			@Html.DisplayNameFor(model=>model.Venue.Adress)
 		</dt>
-		<dd>
+		<dd class="col-sm-8">
 			@Html.DisplayFor(model=>model.Venue.Adress)
 		</dd>
+		<dt class="col-sm-4">
+			@Html.DisplayNameFor(model=>model.Venue.TotalSeats)
+		</dt>
+		<dd class="col-sm-8">
+			@Html.DisplayFor(model=>model.Venue.TotalSeats)
+		</dd>
 	</dl>
-
-	
-</div
+</div>

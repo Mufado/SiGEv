@@ -1,60 +1,219 @@
-@model SiGEv.Models.Event
+@using static SiGEv.Models.Enums.Enums
+@model SiGEv.Models.ViewModels.EventFormViewModel
 @{
-	 ViewData["Title"] = "Comprar";
+    ViewData["Title"] = "Comprar";
 }
 
 <h6>Comprar Ingresso</h6>
-<h1>@Html.DisplayFor(model=>model.Title)</h1>
+<h1>@Html.DisplayFor(model=>model.Event.Title)</h1>
 
 <div class="container p-0">
 	<div class="row align-items-start">
 		<div class="col-8">
-			<hr />
-			<dl class="dl-horizontal">
-				<dt>
-					@Html.DisplayNameFor(model=>model.Date)
-				</dt>
-				<dd>
-					@Html.DisplayFor(model=>model.Date)
-				</dd>
-				<dt>
-					@Html.DisplayNameFor(model=>model.Type)
-				</dt>
-				<dd>
-					@Html.DisplayFor(model=>model.Type)
-				</dd>
-				<dt>
-					@Html.DisplayNameFor(model=>model.Venue.Adress)
-				</dt>
-				<dd>
-					@Html.DisplayFor(model=>model.Venue.Adress)
-				</dd>
-			</dl>
+			<div class="card" >
+			  <ul class="list-group list-group-flush">
 
+				<li class="list-group-item">
+					<h5>Detalhes do Evento</h5>
+					<dl class="row">
+						<dt class="col-sm-4">
+							@Html.DisplayNameFor(model=>model.Event.Date)
+						</dt>
+						<dd class="col-sm-8">
+							@Html.DisplayFor(model=>model.Event.Date)
+						</dd>
+						<dt class="col-sm-4">
+							@Html.DisplayNameFor(model=>model.Event.Type)
+						</dt>
+						<dd class="col-sm-8">
+							@Html.DisplayFor(model=>model.Event.Type)
+						</dd>
+						<dt class="col-sm-4">
+							@Html.DisplayNameFor(model=>model.Venue.Adress)
+						</dt>
+						<dd class="col-sm-8">
+							@Html.DisplayFor(model=>model.Venue.Adress)
+						</dd>
+					</dl>
+				</li>
+
+				<li class="list-group-item">
+					<form asp-action="Buy" method="post" id="buy">
+						<div>
+							<h5>Nome e Documento</h5>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="clientName">Nome Completo</span>
+								<input asp-for="Bill.ClientName" type="text" class="form-control" placeholder="" aria-label="Clientname" aria-describedby="clientName">
+							</div>
+							<div class="input-group mb-3">
+								<label class="input-group-text" for="inputGroupSelect01">Documento</label>
+								<select asp-for="Bill.DocumentType" asp-items="Html.GetEnumSelectList<DocumentType>()" class="form-control" id="typeDocumentSelect"></select>
+								<input asp-for="Bill.ClientDocument" type="text" class="form-control" placeholder="" aria-label="Clientdocument" aria-describedby="Clientdocument">
+							</div>
+						</div>
+						<hr/>
+						<div class="container">
+							<div class="row">
+								<div class="form-group col-6 pl-0 m-0">
+									<h5>Seção</h5>
+									<div class="input-group mb-3">
+										<label class="control-label"></label>
+										<select asp-for="SectionId" class="form-control" asp-items="@(new SelectList(Model.Sections, "Id", "Id"))"></select>
+									</div>
+								</div>
+								<div class="form-group col-6 pr-0 m-0">
+									<h5>Quantidade de Ingressos</h5>
+									<div class="input-group mb-3">
+									  <span class="input-group-text" id="quantityTickets">Ingressos</span>
+									  <input asp-for="TicketsQuantity" onchange="valorTotal()" id="qtd_tickets" type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
+									</div>
+								</div>
+							</div>
+							<hr/>
+							<div class="row">
+								<div class="form-group col-6 pl-0 m-0" id="paymentMethod">
+									<h5>Método de Pagamento</h5>
+									<div class="input-group mb-3">
+										<label class="control-label"></label>
+										<select asp-for="Bill.PaymentType" id="selecDoMet" onchange="payMeth()" asp-items="Html.GetEnumSelectList<PaymentType>()" class="form-control selectedPaymentMethod"></select>
+									</div>
+								</div>
+								<div class="form-group col-6 pl-0 m-0 d-none" id="parcelas">
+									<h5>Parcelas</h5>
+									<div class="input-group mb-3">
+										<label class="control-label"></label>
+										<select asp-for="Bill.Type" onchange="qtdParc()" id="qtdParcelas" asp-items="Html.GetEnumSelectList<BillType>()" class="form-control selectedParcelas"></select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr/>
+						<div class="form-group col-6 pl-0 m-0 d-none" id="">
+							<h5>Protocolo</h5>
+							<div class="input-group mb-3">
+								<label class="control-label"></label>
+								<input asp-for="Bill.Protocol" class="form-control" value="@Model.Protocol"></input>
+							</div>
+						</div>
+					</form>
+				</li>
+			</ul>
+
+			  <div class="card-footer">
+				<div class="d-flex justify-content-end">
+					<div>
+						<h6>Valor da Compra</h6>
+						<p class="m-0" id="ticket_value">@Html.DisplayFor(model=>model.Sections.FirstOrDefault().CommonPrice)</p>
+					</div>
+				</div>
+			  </div>
+			</div>
 		</div>
 
 		<div class="col-4">
 			<div class="card">
 				<div class="card-header">
-					<h5>Detalhes da Compra</h5></4>
+					Detalhes da Compra
 				</div>
 				<div class="card-body">
 					<h6>Evento</h6>
-					<p>@Model.Title</p>
+					<p>@Model.Event.Title</p>
 
-					<h6>Valor da Compra</h6>
-					<p>R$ 00.000</p>
+					<h6>Número do Protocolo</h6>
+					<p>@Model.Protocol</p>
 
-					<h6>Metodo de Pagamento</h6>
-					<p>Cartão de Crédito</p>
+					<h6>Total da Compra</h6>
+					<small class="text-muted">Valor acrescido da taxa de serviço de 5%</small>
+					<p id="valw_rate"></p>
+					
 
-					<button type="button" class="btn btn-primary">Comprar</button>
+					<h6>Metodo de Pagamento selecionado</h6>
+					<small class="text-muted d-none" id="detailsParcelas">Parcelado em X vezes</small>
+					<p id="paymentMethodSelected">Dinheiro</p>
+
+					<h6>Data da Compra</h6>
+					<p id="buy_date" ></p>
+
+					<button type="submit" value="submit" class="btn btn-primary" form="buy">Confirmar Compra</button>
 					<a class="btn btn-outline-danger" asp-area="" asp-controller="Events" asp-action="Index">Cancelar</a>
 				 </div>
-				 <div class="card-footer">
+				 <div class="card-footer text-muted">
 					Após a compra não é possível fazer o cancelamento.
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+
+	var paymentMethod = document.getElementsByClassName('selecDoMet')
+
+	function payMeth(){
+		var select = document.getElementById("selecDoMet");
+		var option = select.children[select.selectedIndex];
+		var texto = option.textContent;
+
+        var paymentMethod = document.getElementById("paymentMethodSelected");
+        paymentMethod.innerText = texto;
+
+		var parcelas = document.getElementById("parcelas");
+		var detailsParcelas = document.getElementById("detailsParcelas");
+
+		if (texto == "Cartão de Crédito") {
+			parcelas.classList.remove("d-none");
+			detailsParcelas.classList.remove("d-none");
+		}
+        if (texto != "Cartão de Crédito") {
+            parcelas.classList.add("d-none");
+            detailsParcelas.classList.add("d-none");
+        }
+
+	}
+
+function qtdParc(){
+    var select = document.getElementById("qtdParcelas");
+	var option = select.children[select.selectedIndex];
+	var texto = option.textContent;
+    console.log(texto);
+
+    var textDetParcelas = document.getElementById("detailsParcelas");
+
+	if(texto != "A vista"){
+		textDetParcelas.innerText = `Parcelado em ${texto}`
+	}else{
+		textDetParcelas.innerText = `${texto}`
+	}
+}
+
+
+
+var valorTaxado = document.getElementById("valw_rate");
+
+var valorCompra = document.getElementById("ticket_value");//Valor do bilhete
+var valorBilhete = parseFloat(valorCompra.innerText);;
+var qtdTickets;
+var totalCompra;
+
+function valorTotal(){
+	qtdTickets = parseInt(document.getElementById("qtd_tickets").value);
+
+	console.log(valorBilhete)
+
+	totalCompra = 0;
+
+	totalCompra = qtdTickets * valorBilhete;
+	valorCompra.innerText = `${totalCompra}`;
+
+	var total = totalCompra + (totalCompra * 0.05);
+	valorTaxado.innerText = `${total}`
+}
+
+
+var dataCompra = document.getElementById("buy_date")
+
+var date = new Date()
+var today = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+dataCompra.innerText = `${today}`;
+
+</script>

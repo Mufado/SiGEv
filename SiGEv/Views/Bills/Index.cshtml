@@ -1,0 +1,45 @@
+@model IEnumerable<SiGEv.Models.Bill>
+
+@{
+    ViewData["Title"] = "Recibos";
+}
+
+<h6>Lista de Recibos</h6>
+<h1>@ViewData["Title"]</h1>
+
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model=>model.Protocol)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.User)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.ClientName)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.DocumentType)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.ClientDocument)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Value)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.PaymentType)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.PaymentDate)</th>
+			  <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+				<th scope="row">@Html.DisplayFor(x=>item.Protocol)</th>
+				<td>@Html.DisplayFor(x=>item.User)</td>
+				<td>@Html.DisplayFor(x=>item.ClientDocument)</td>
+				<td>@Html.DisplayFor(x=>item.DocumentType)</td>
+				<td>@Html.DisplayFor(x=>item.ClientName)</td>
+				<td>@Html.DisplayFor(x=>item.Value)</td>
+				<td>@Html.DisplayFor(x=>item.PaymentType)</td>
+				<td>@Html.DisplayFor(x=>item.PaymentDate)</td>
+				<td>
+					<div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+						<a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+					</div>
+				</td>
+            </tr>
+        }
+    </tbody>
+</table>

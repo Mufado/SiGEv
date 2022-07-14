@@ -1,4 +1,4 @@
-﻿
+
 using System.ComponentModel.DataAnnotations;
 
 namespace SiGEv.Models.Enums
@@ -11,6 +11,14 @@ namespace SiGEv.Models.Enums
             Employee = 1,
             Admin = 2 
         }
+
+		public enum DocumentType
+		{
+			[Display(Name = "RG")]
+			RG = 0,
+			[Display(Name = "CPF")]
+			CPF = 1
+		}
         public enum PersonGender
         {
             [Display(Name = "Masculino")]
@@ -36,14 +44,23 @@ namespace SiGEv.Models.Enums
         }
         public enum PaymentType
         {
-            Card
+			[Display(Name = "Dinheiro")]
+			Money,
+			[Display(Name = "Cartão de Crédito")]
+			CreditCard,
+			[Display(Name = "Cartão de Débito")]
+			DebitCard,
         }
         public enum BillType
         {
-            InCash = 0,
-            Installment3X = 1,
-            Installment6X = 2,
-            Installment12X = 3
+			[Display (Name = "A vista")]
+            InCash,
+			[Display(Name = "3x vezes")]
+			Installment3X,
+			[Display(Name = "6x vezes")]
+			Installment6X,
+			[Display(Name = "12x vezes")]
+			Installment12X,
         }
     }
 }

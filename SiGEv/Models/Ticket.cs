@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static SiGEv.Models.Enums.Enums;
 
@@ -7,21 +8,26 @@ namespace SiGEv.Models
     public class Ticket
     {
         public int Id { get; set; }
-        public int SeatNumber { get; set; }
-        public TicketType Type { get; set; }
-        public double Price { get; set; }
+		public int SeatNumber { get; set; }
+		public TicketType Type { get; set; }
+		[Display(Name = "Preço")]
+		public double Price { get; set; }
 
         [ForeignKey("Bill")]
-        public int BillId { get; set; }
+		[Display(Name = "Id do Recibo")]
+		public int BillId { get; set; }
+		
         public Bill Bill { get; set; }
 
         [ForeignKey("Section")]
-        public int SectionId { get; set; }
+		[Display(Name = "Id da Seção")]
+		public int SectionId { get; set; }
         public Section Section { get; set; }
 
         [ForeignKey("Venue")]
         public int VenueId { get; set; }
-        public Venue Venue { get; set; }
+		[Display(Name = "Endereço")]
+		public Venue Venue { get; set; }
 
         public Ticket()
         {
