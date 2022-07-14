@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SiGEv.Data;
 using SiGEv.Models;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace SiGEv.Services
 
 		public Bill FindById(int id)
 		{
-			return _context.Bills.FirstOrDefault(bill => bill.Id == id);
+			return _context.Bills.Include(obj => obj.SelledTickets).FirstOrDefault(bill => bill.Id == id);
 		}
 
 		public List<Bill> FindByUserId(int id)

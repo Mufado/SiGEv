@@ -64,7 +64,7 @@ namespace SiGEv.Controllers
 			}
 
 			var sections = _sectionsServices.GetSectionListByEventId(ev.Id);
-			var venue = _venueServices.GetVenueById(ev.VenueId);
+			var venue = _venueServices.FindById(ev.VenueId);
 			var protocol = StringProtocol.RandomString();
 			var viewModel = new EventFormViewModel {Event = ev, Venue = venue, Sections = sections , Protocol=protocol};
 			return View(viewModel);
@@ -74,7 +74,7 @@ namespace SiGEv.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult Buy(EventFormViewModel obj)
 		{
-			Section section = _sectionsServices.GetSectionById(obj.SectionId);
+			Section section = _sectionsServices.FindById(obj.SectionId);
 			Event ev = _eventServices.FindById(section.Id);
 
 			double billValue = section.CommonPrice * obj.TicketsQuantity;

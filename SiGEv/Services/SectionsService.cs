@@ -26,7 +26,7 @@ namespace SiGEv.Services
 			return x.ToList();
 		}
 
-        public Section GetSectionById(int sectionId)
+        public Section FindById(int sectionId)
         {
 			return _context.Sections.FirstOrDefault(x => x.Id == sectionId);
         }
