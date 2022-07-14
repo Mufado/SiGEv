@@ -38,7 +38,7 @@ namespace SiGEv.Controllers
 		[Authorize(Policy = "EmployeeAccess")]
 		public IActionResult Create()
 		{
-			var venues = _venueServices.GetAllVenues();
+			var venues = _venueServices.FindAll();
 			var viewModel = new EventFormViewModel { Venues = venues };
 			return View(viewModel);
 		}

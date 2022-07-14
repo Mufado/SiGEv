@@ -10,9 +10,12 @@
 			<h6>Seleção de eventos</h6>
 			<h1>@ViewData["Title"]</h1>
 		</div>
-		<div class="col-2 p-0 ">
-			<a class="btn btn-primary w-100" asp-action="Create" >Criar Evento</a>
-		</div>
+		@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+		{
+			<div class="col-2 p-0 ">
+				<a class="btn btn-primary w-100" asp-action="Create" >Criar Evento</a>
+			</div>	
+		}
 	</div>
 </div>
 

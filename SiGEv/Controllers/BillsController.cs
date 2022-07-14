@@ -28,7 +28,7 @@ namespace SiGEv.Controllers
 		{
 			List<Bill> bills;
 			bills = _billServices.FindAll();
-			/* if (User.IsInRole("Administrator") || User.IsInRole("Employee"))
+			/* if (User.IsInRole("Admin") || User.IsInRole("Employee"))
 			{
 				
 			}*/
