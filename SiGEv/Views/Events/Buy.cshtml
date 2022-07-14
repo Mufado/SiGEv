@@ -76,7 +76,7 @@
 									<h5>Método de Pagamento</h5>
 									<div class="input-group mb-3">
 										<label class="control-label"></label>
-										<select asp-items="Html.GetEnumSelectList<PaymentType>()" class="form-control selectedParcelas"></select>
+										<select id="selecDoMet" onchange="payMeth()" asp-items="Html.GetEnumSelectList<PaymentType>()" class="form-control selectedPaymentMethod"></select>
 									</div>
 								</div>
 								<div class="form-group col-6 pl-0 m-0 d-none" id="parcelas">
@@ -124,7 +124,7 @@
 
 					<h6>Metodo de Pagamento selecionado</h6>
 					<small class="text-muted d-none" id="detailsParcelas">Parcelado em X vezes</small>
-					<p id="selectedPaymentMethod">Dinheiro</p>
+					<p id="paymentMethodSelected">Dinheiro</p>
 
 					<h6>Data da Compra</h6>
 					<p id="buy_date" ></p>
@@ -141,42 +141,70 @@
 </div>
 
 <script>
-	var paymentMethod = document.getElementById('paymentMethod');
-	if (paymentMethod) {
-	paymentMethod.addEventListener('change', function () {
-		var radios = document.getElementsByName("paymentMethod");
-		var selectedPaymentMethod = document.getElementById("selectedPaymentMethod");
-		for (var i = 0; i < radios.length; i++) {
-			if (radios[i].checked) {
-				if (i == 0) selectedPaymentMethod.innerHTML = "Dinheiro";
-				if (i == 1) selectedPaymentMethod.innerHTML = "Cartão de Crédito";
-				if (i == 2) selectedPaymentMethod.innerHTML = "Cartão de Débito";
-			}
-		}
-	});
 
-	paymentMethod.addEventListener('change', function () {
-		var radios = document.getElementsByName("paymentMethod");
+	var paymentMethod = document.getElementsByClassName('selecDoMet')
+
+	function payMeth(){
+		var select = document.getElementById("selecDoMet");
+		var option = select.children[select.selectedIndex];
+		var texto = option.textContent;
+
+        var paymentMethod = document.getElementById("paymentMethodSelected");
+        paymentMethod.innerText = texto;
+
 		var parcelas = document.getElementById("parcelas");
 		var detailsParcelas = document.getElementById("detailsParcelas");
-		
 
-		
-		radios.forEach(r => {
-			if (r.checked && r.id == "paymentMethodCredit") {
-				parcelas.classList.remove("d-none");
-				detailsParcelas.classList.remove("d-none");
+		if (texto == "Cartão de Crédito") {
+			parcelas.classList.remove("d-none");
+			detailsParcelas.classList.remove("d-none");
+		}
+        if (texto != "Cartão de Crédito") {
+            parcelas.classList.add("d-none");
+            detailsParcelas.classList.add("d-none");
+        }
 
-                
+	}
+
+
+	/*var paymentMethod = document.getElementsByClassName('selectedPaymentMethod')[0];
+	if (paymentMethod) {
+		paymentMethod.addEventListener('change', function () {
+
+			//var radios = document.getElementsByName("paymentMethod");
+			var selectedPaymentMethod = document.getElementById("selectedPaymentMethod");
+			console.log(selectedPaymentMethod)
+
+			for (var i = 0; i < radios.length; i++) {
+				if (radios[i].checked) {
+					if (i == 0) selectedPaymentMethod.innerHTML = "Dinheiro";
+					if (i == 1) selectedPaymentMethod.innerHTML = "Cartão de Crédito";
+					if (i == 2) selectedPaymentMethod.innerHTML = "Cartão de Débito";
+				}
 			}
-			if (r.checked && r.id != "paymentMethodCredit") {
-				parcelas.classList.add("d-none");
-				detailsParcelas.classList.add("d-none");
-			}
-		})
+		});
 
-	});
-}
+
+
+
+
+		paymentMethod.addEventListener('change', function () {
+			var parcelas = document.getElementsByClassName("selectedParcelas");
+			var detailsParcelas = document.getElementById("detailsParcelas");
+		
+			parcelas.forEach(r => {
+				if (r.checked && r.id == "paymentMethodCredit") {
+					parcelas.classList.remove("d-none");
+					detailsParcelas.classList.remove("d-none");
+				}
+				if (r.checked && r.id != "paymentMethodCredit") {
+					parcelas.classList.add("d-none");
+					detailsParcelas.classList.add("d-none");
+				}
+			})
+
+		});
+	}*/
 
 function qtdParc(){
     var select = document.getElementById("qtdParcelas");
