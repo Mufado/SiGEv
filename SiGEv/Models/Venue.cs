@@ -5,8 +5,9 @@ namespace SiGEv.Models
     public class Venue
     {
         public int Id { get; set; }
-		[Display(Name = "Total de Assentos")]
-        public int TotalSeats { get; set; }
+
+		[Display(Name = "Quantidade de Assentos")]
+		public int TotalSeats { get; set; }
 
         [Display(Name = "Endereço")]
         public string Adress { get; set; }

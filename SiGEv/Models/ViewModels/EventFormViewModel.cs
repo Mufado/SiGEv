@@ -11,5 +11,6 @@ namespace SiGEv.Models.ViewModels
         public int SectionId { get; set; }
         public int TicketsQuantity { get; set; }
 		public string Protocol { get; set; }
+		public ICollection<Venue> Venues { get; set; }
 	}
 }

@@ -17,11 +17,18 @@ namespace SiGEv.Services
 		public List<Venue> FindAll()
 		{
 			return _context.Venues.OrderBy(x=> x.Adress).ToList();
+
 		}
 
 		public Venue FindById(int id)
 		{
-			return _context.Venues.FirstOrDefault(x => x.Id == id);
+			return _context.Venues.FirstOrDefault(ev => ev.Id == id);
+		}
+
+		public void Insert(Venue obj)
+		{
+			_context.Add(obj);
+			_context.SaveChanges();
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SiGEv.Models;
 using SiGEv.Models.ViewModels;
@@ -28,17 +29,25 @@ namespace SiGEv.Controllers
 
 		}
 
-        public IActionResult Index()
-        {
-            List<Event> events = _eventServices.GetAllEvents();
-            return View(events);
-        }
+		public IActionResult Index()
+		{
+			List<Event> events = _eventServices.GetAllEvents();
+			return View(events);
+		}
+
+		[Authorize(Policy = "EmployeeAccess")]
+		public IActionResult Create()
+		{
+			var venues = _venueServices.GetAllVenues();
+			var viewModel = new EventFormViewModel { Venues = venues };
+			return View(viewModel);
+		}
 
 		public IActionResult Details(int? id)
 		{
 			if (id == null)
 			{
-				return RedirectToAction(nameof(Error), new {message= "Id não fornecido" });
+				return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
 			}
 
 			var obj = _eventServices.FindById(id.Value);
@@ -120,6 +129,15 @@ namespace SiGEv.Controllers
 			};
 
 			return View(viewModel);
+		}
+
+		[HttpPost]
+		[Authorize(Policy = "EmployeeAccess")]
+		[ValidateAntiForgeryToken]
+		public IActionResult Create(EventFormViewModel ev)
+		{
+			_eventServices.Insert(ev.Event);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

@@ -10,17 +10,18 @@ namespace SiGEv.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Evento")]
+        [Display(Name = "Titulo")]
         public string Title { get; set; }
         public ICollection<Section> Sections { get; set; } = new List<Section>();
         
-        [Display(Name = "Data de início")]
+        [Display(Name = "Data e Horario")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Tipo")]
         public EventType Type { get; set; }
 
         [ForeignKey("Venue")]
+		[Display(Name = "Endereço")]
         public int VenueId { get; set; }
         public Venue Venue { get; set; }
 
