@@ -65,7 +65,9 @@
 									<h5>Quantidade de Ingressos</h5>
 									<div class="input-group mb-3">
 									  <span class="input-group-text" id="quantityTickets">Ingressos</span>
-									  <input asp-for="TicketsQuantity" onchange="valorTotal()" id="qtd_tickets" type="number" class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats" aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
+									  <input asp-for="TicketsQuantity" onchange="valorTotal()" id="qtd_tickets" type="number"
+										  class="form-control" placeholder="1" min="1" max="@Model.Venue.TotalSeats"
+										  aria-label="Quantidade de Ingressos" aria-describedby="quantityTickets">
 									</div>
 								</div>
 							</div>

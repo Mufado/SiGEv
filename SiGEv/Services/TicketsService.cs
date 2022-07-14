@@ -29,5 +29,10 @@ namespace SiGEv.Services
 			_context.AddRange(tickets);
 			_context.SaveChanges();
 		}
+
+		public int CountTicketsBySectionId(int id)
+		{
+			return _context.Tickets.Where(x => x.SectionId == id).ToList().Count();
+		}
 	}
 }
