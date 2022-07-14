@@ -1,4 +1,4 @@
-@model SiGEv.Models.ViewModels.ReportsFormViewModel;
+@model IEnumerable<SiGEv.Models.ViewModels.ReportsFormViewModel>
 
 @{
     ViewData["Title"] = "Relatórios";
@@ -35,39 +35,33 @@
                 </form>
             </div>
         </nav>
-        <div class="modal-title">Valor Total de Vendas = @Model.ListBills.Sum(obj => obj.Value).ToString("F2")</div>
+        <div class="modal-title">Valor Total de Vendas = @Model.Sum(obj => obj.Bill.Value).ToString("F2")</div>
         <table class="table table-striped table-hover">
             <thead class="bg-secondary">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => Model.Event)
+                        @Html.DisplayNameFor(model => model.Event.Title)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => Model.Event.Date)
+                        @Html.DisplayNameFor(model => model.Event.Date)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => Model.Section.Id)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => Model.Event.Venue.Adress)
+                        @Html.DisplayNameFor(model => model.Section.Id)
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.ListEvents)
+                @foreach (var item in Model)
                 {
                     <tr>
 						<td>
-							@Html.DisplayFor(x => item.Title)
+							@item.Event.Title
 						</td>
 						<td>
-							@Html.DisplayFor(x => item.Date)
+							@item.Event.Date
 						</td>
 						<td>
-							@Html.DisplayFor(x => item.Id)
-						</td>
-						<td>
-							@Html.DisplayFor(x => item.Venue.Adress)
+							@item.Section.Id
 						</td>
 					</tr>
                 }
