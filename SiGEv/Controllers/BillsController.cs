@@ -16,21 +16,33 @@ namespace SiGEv.Controllers
         private readonly SectionsService _sectionServices;
         private readonly VenuesService _venueServices;
         private readonly EventsService _eventServices;
+        private readonly UsersService _userServices;
+
         public BillsController(BillsService billServices, SectionsService sectionServices,
-            VenuesService venueServices, EventsService eventServices)
-        {
+            VenuesService venueServices, EventsService eventServices, UsersService userServices)
+
+		{
             _billServices = billServices;
             _venueServices = venueServices;
             _sectionServices = sectionServices;
             _eventServices = eventServices;
-        }
+			_userServices = userServices;
 
-        [Authorize(Policy = "EmployeeAccess")]
+		}
+
+        [Authorize(Policy = "CustomerAccess")]
         public IActionResult Index()
         {
-            List<Bill> bills;
-            bills = _billServices.FindAll();
-            return View(bills);
+            List<Bill> bills = new List<Bill>();
+			if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+			{
+				bills = _billServices.FindAll();
+			} else if (User.IsInRole("Customer"))
+			{
+				User currentUser = _userServices.GetCurrentUser(this.User);
+				bills = _billServices.FindByUserId(currentUser.Id);
+			}
+			return View(bills);
         }
 
         [Authorize(Policy = "CustomerAccess")]
