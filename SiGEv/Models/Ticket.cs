@@ -34,12 +34,18 @@ namespace SiGEv.Models
 		[Display(Name = "Endereço")]
 		public Venue Venue { get; set; }
 
+        [ForeignKey("Event")]
+        public int EventId { get; set; }
+
+		[Display(Name = "Evento")]
+		public Event Event { get; set; }
+
         public Ticket()
         {
         }
 
         public Ticket(int id, int seatNumber, TicketType type, double price, int billId,
-            Bill bill, int sectionId, Section section, int venueId, Venue venue)
+            Bill bill, int sectionId, Section section, int venueId, Venue venue,int eventId, Event @event)
         {
             Id = id;
             SeatNumber = seatNumber;
@@ -51,6 +57,8 @@ namespace SiGEv.Models
             Section = section;
             VenueId = venueId;
             Venue = venue;
+			EventId = eventId;
+			Event = @event;
         }
     }
 }

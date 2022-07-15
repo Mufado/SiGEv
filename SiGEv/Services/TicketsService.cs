@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using SiGEv.Data;
 using SiGEv.Models;
 using System.Collections.Generic;
@@ -16,7 +17,10 @@ namespace SiGEv.Services
 
 		public List<Ticket> FindAll()
 		{
-			return _context.Tickets.ToList();
+			return _context.Tickets
+				.Include(ticket=> ticket.Event)
+				.Include(ticket=>ticket.Venue)
+				.Include(ticket=>ticket.Section).ToList();
 		}
 
 		public void Insert(Ticket ticket)

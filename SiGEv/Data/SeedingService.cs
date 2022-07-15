@@ -82,9 +82,9 @@ namespace SiGEv.Data
 			Bill bill2 = new Bill { Id = 2, UserId = 2, Protocol = "H4DG3T36", Value = 470.29, PaymentDate = DateTime.Now };
 			Bill bill3 = new Bill { Id = 3, UserId = 1, Protocol = "IVZKVT0Z", Value = 150.89, PaymentDate = DateTime.Now };
 
-			Ticket ticket1 = new Ticket { Id = 1, BillId = 1, SeatNumber = 45, Type = TicketType.Common, SectionId = 1, VenueId = 1, Price = 75.0 };
-			Ticket ticket2 = new Ticket { Id = 2, BillId = 2, SeatNumber = 85, Type = TicketType.VIP, SectionId = 2, VenueId = 2, Price = 105.0 };
-			Ticket ticket3 = new Ticket { Id = 3, BillId = 3, SeatNumber = 50, Type = TicketType.HalfCost, SectionId = 3, VenueId = 3, Price = 25.0 };
+			Ticket ticket1 = new Ticket { Id = 1, BillId = 1, SeatNumber = 45, Type = TicketType.Common, SectionId = 1, VenueId = 1, Price = 75.0, EventId=1, Event = event1 };
+			Ticket ticket2 = new Ticket { Id = 2, BillId = 2, SeatNumber = 35, Type = TicketType.VIP, SectionId = 2, VenueId = 2, Price = 105.0 , EventId = 1, Event = event1 };
+			Ticket ticket3 = new Ticket { Id = 3, BillId = 3, SeatNumber = 20, Type = TicketType.HalfCost, SectionId = 3, VenueId = 3, Price = 25.0, EventId = 1, Event = event1 };
 
 			event1.Sections.Add(section1);
             event2.Sections.Add(section2);
