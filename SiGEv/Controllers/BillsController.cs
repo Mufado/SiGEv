@@ -15,12 +15,14 @@ namespace SiGEv.Controllers
 		private readonly BillsService _billServices;
 		private readonly SectionsService _sectionServices;
 		private readonly VenuesService _venueServices;
+		private readonly EventsService _eventServices;
 		public BillsController(BillsService billServices, SectionsService sectionServices,
-			VenuesService venueServices)
+			VenuesService venueServices, EventsService eventServices)
 		{
 			_billServices = billServices;
 			_venueServices = venueServices;
 			_sectionServices = sectionServices;
+			_eventServices = eventServices;
 		}
 
 		[Authorize(Policy = "EmployeeAccess")]
@@ -48,14 +50,15 @@ namespace SiGEv.Controllers
 				return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
 			}
 			var tickets = bill.SelledTickets;
-
+			int evId=0;
 			foreach (var item in tickets)
 			{
 				item.Venue = _venueServices.FindById(item.VenueId);
 				item.Section = _sectionServices.FindById(item.SectionId);
+				evId = item.SectionId;
 			}
-
-			var viewModel= new DetailsViewModel { Bill = bill, Tickets= bill.SelledTickets};
+			var ev = _eventServices.FindById(evId);
+			var viewModel= new DetailsViewModel { Bill = bill, Tickets= bill.SelledTickets, Event=ev};
 			return View(viewModel);
 		}
 

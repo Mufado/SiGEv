@@ -40,11 +40,15 @@
 		<h3>Tickets Comprados</h3>
 	</div>
 	<div class="row">
-		<table class="table">
+		<table class="table table-sm table-hover">
 			<thead>
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Preço</th>
+					@if(Model.Event!=null){
+						<th scope="col">Evento</th>
+					}
+					<th scope="col">Poltrona</th>
 					<th scope="col">Endereço</th>
 					<th scope="col">Data de Inicio</th>
 					<th scope="col">Data de Fim</th>
@@ -54,14 +58,19 @@
 				@foreach (var item in Model.Tickets)
 				{
 					<tr>
-						<th scope="row">@Html.DisplayFor(x=>item.Id)</th>
-						<th scope="row">@Html.DisplayFor(x=>item.Price)</th>
+						<td>@Html.DisplayFor(x=>item.Id)</td>
+						<td>@Html.DisplayFor(x=>item.Price)</td>
+						@if(Model.Event!=null){
+							<td>@Html.DisplayFor(x=>Model.Event.Title)</td>
+						}
+						<td>@Html.DisplayFor(x=>item.SeatNumber)</td>
 						<td>@Html.DisplayFor(x=>item.Venue.Adress)</td>
 						<td>@Html.DisplayFor(x=>item.Section.StartTime)</td>
 						<td>@Html.DisplayFor(x=>item.Section.EndTime)</td>
 					</tr>
 				}
 			</tbody>
+			<caption>Total de tickets Comprados: @Model.Tickets.Count()</caption>
 		</table>
 	</div>
 </div>
