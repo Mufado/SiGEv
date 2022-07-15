@@ -8,13 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\NovaPasta\**" />
+    <Content Remove="Migrations\NovaPasta\**" />
+    <EmbeddedResource Remove="Migrations\NovaPasta\**" />
+    <None Remove="Migrations\NovaPasta\**" />
     <Compile Remove="Controllers\NovaPasta\**" />
     <Content Remove="Controllers\NovaPasta\**" />
     <EmbeddedResource Remove="Controllers\NovaPasta\**" />
     <None Remove="Controllers\NovaPasta\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Controllers\HomeController1.cs" />
     <Compile Remove="Migrations\20220713001322_EventToBill.cs" />
     <Compile Remove="Migrations\20220713001322_EventToBill.Designer.cs" />

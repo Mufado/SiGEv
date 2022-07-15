@@ -1,23 +1,41 @@
-﻿@model IEnumerable<SiGEv.Models.Event>
+@model IEnumerable<SiGEv.Models.Event>
 
 @{
     ViewData["Title"] = "Eventos";
 }
 
-<h1>@ViewData["Title"]</h1>
-<p>Seleção de eventos</p>
+<div class="container pb-2">
+	<div class="row align-items-end">
+		<div class="col-10 p-0">
+			<h6>Seleção de eventos</h6>
+			<h1>@ViewData["Title"]</h1>
+		</div>
+		@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+		{
+			<div class="col-2 p-0 ">
+				<a class="btn btn-primary w-100" asp-action="Create" >Criar Evento</a>
+			</div>	
+		}
+	</div>
+</div>
 
-<table class="table table-striped table-hover">
-    <thead class="bg-secondary">
+<table class="table table-striped align-middle table-hover table-light">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Venue)
+                @Html.DisplayNameFor(model => model.Venue.Adress)
+            </th>
+			 <th>
+                @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
+            </th>
+			<th>
+                
             </th>
         </tr>
     </thead>
@@ -31,8 +49,17 @@
                 <td>
                     @Html.DisplayFor(x => item.Venue.Adress)
                 </td>
+				<td>
+                    @Html.DisplayFor(x => item.Type)
+                </td>
                 <td>
                     @Html.DisplayFor(x => item.Date)
+                </td>
+				<td>
+					<div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+						<a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+						<a class="btn btn-outline-primary" asp-action="Buy" asp-route-id="@item.Id">Comprar</a>
+					</div>
                 </td>
             </tr>
         }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using SiGEv.Models;
 using System;
 using System.Linq;
@@ -90,9 +90,9 @@ namespace SiGEv.Data
             Section section2 = new Section { Id = 2, Event = event2, EventId = 2, CommonPrice = 20.00, StartTime = event2.Date, EndTime = event2.Date.AddHours(3) };
             Section section3 = new Section { Id = 3, Event = event3, EventId = 3, CommonPrice = 30.00, StartTime = event3.Date, EndTime = event3.Date.AddHours(4) };
 
-            Bill bill1 = new Bill { Id = 1, UserId = 1, Value = 2150.59, PaymentDate = DateTime.Now };
-            Bill bill2 = new Bill { Id = 2, UserId = 2, Value = 470.29, PaymentDate = DateTime.Now };
-            Bill bill3 = new Bill { Id = 3, UserId = 1, Value = 150.89, PaymentDate = DateTime.Now };
+            Bill bill1 = new Bill { Id = 1, UserId = 1, Protocol= "JCDL7WEJ", Value = 2150.59, PaymentDate = DateTime.Now };
+            Bill bill2 = new Bill { Id = 2, UserId = 2, Protocol = "H4DG3T36", Value = 470.29, PaymentDate = DateTime.Now };
+            Bill bill3 = new Bill { Id = 3, UserId = 1, Protocol = "IVZKVT0Z", Value = 150.89, PaymentDate = DateTime.Now };
 
             Ticket ticket1 = new Ticket { Id = 1, BillId = 1, SeatNumber = 45, Type = TicketType.Common, SectionId = 1, VenueId = 1, Price = 75.0 };
             Ticket ticket2 = new Ticket { Id = 2, BillId = 2, SeatNumber = 85, Type = TicketType.VIP, SectionId = 2, VenueId = 2, Price = 105.0 };

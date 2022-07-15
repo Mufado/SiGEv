@@ -1,0 +1,76 @@
+@using SiGEv.Models
+@model SiGEv.Models.ViewModels.DetailsViewModel
+
+@{
+    ViewData["Title"] = "Recibo";
+}
+
+<h6>Informações da Compra</h6>
+<h1>Recibo #@Model.Bill.Id </h1>
+
+<div class="container">
+	<div class="row pb-3">
+		<table class="table">
+		  <thead>
+			<tr>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.Protocol)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.User)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.ClientName)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.DocumentType)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.ClientDocument)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.Value)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.PaymentType)</th>
+			  <th scope="col">@Html.DisplayNameFor(model=>model.Bill.PaymentDate)</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+				<th scope="row">@Html.DisplayFor(model=>model.Bill.Protocol)</th>
+				<td>@Html.DisplayFor(model=>model.Bill.User.Name)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.ClientName)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.DocumentType)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.ClientDocument)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.Value)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.PaymentType)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.PaymentDate)</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<h3>Tickets Comprados</h3>
+	</div>
+	<div class="row">
+		<table class="table table-sm table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Preço</th>
+					@if(Model.Event!=null){
+						<th scope="col">Evento</th>
+					}
+					<th scope="col">Poltrona</th>
+					<th scope="col">Endereço</th>
+					<th scope="col">Data de Inicio</th>
+					<th scope="col">Data de Fim</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Tickets)
+				{
+					<tr>
+						<td>@Html.DisplayFor(x=>item.Id)</td>
+						<td>@Html.DisplayFor(x=>item.Price)</td>
+						@if(Model.Event!=null){
+							<td>@Html.DisplayFor(x=>Model.Event.Title)</td>
+						}
+						<td>@Html.DisplayFor(x=>item.SeatNumber)</td>
+						<td>@Html.DisplayFor(x=>item.Venue.Adress)</td>
+						<td>@Html.DisplayFor(x=>item.Section.StartTime)</td>
+						<td>@Html.DisplayFor(x=>item.Section.EndTime)</td>
+					</tr>
+				}
+			</tbody>
+			<caption>Total de tickets comprados: @Model.Tickets.Count()</caption>
+		</table>
+	</div>
+</div>

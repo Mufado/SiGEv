@@ -45,6 +45,11 @@ namespace SiGEv
 
             services.AddScoped<SeedingService>();
             services.AddScoped<EventsService>();
+            services.AddScoped<BillsService>();
+            services.AddScoped<SectionsService>();
+            services.AddScoped<TicketsService>();
+            services.AddScoped<VenuesService>();
+            services.AddScoped<UsersService>();
             services.AddScoped<ReportsService>();
         }
 
