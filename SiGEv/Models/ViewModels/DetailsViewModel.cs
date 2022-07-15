@@ -8,6 +8,7 @@ namespace SiGEv.Models.ViewModels
 		public Bill Bill { get; set; }
 
 		public ICollection<Ticket> Tickets { get; set; }
-		public Event? Event { get; set; }
+
+		public Event Event { get; set; }
 	}
 }

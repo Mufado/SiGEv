@@ -27,10 +27,10 @@
         {
             <tr>
 				<th scope="row">@Html.DisplayFor(x=>item.Protocol)</th>
-				<td>@Html.DisplayFor(x=>item.User)</td>
-				<td>@Html.DisplayFor(x=>item.ClientDocument)</td>
-				<td>@Html.DisplayFor(x=>item.DocumentType)</td>
+				<td>@Html.DisplayFor(x=>item.User.Name)</td>
 				<td>@Html.DisplayFor(x=>item.ClientName)</td>
+				<td>@Html.DisplayFor(x=>item.DocumentType)</td>
+				<td>@Html.DisplayFor(x=>item.ClientDocument)</td>
 				<td>@Html.DisplayFor(x=>item.Value)</td>
 				<td>@Html.DisplayFor(x=>item.PaymentType)</td>
 				<td>@Html.DisplayFor(x=>item.PaymentDate)</td>

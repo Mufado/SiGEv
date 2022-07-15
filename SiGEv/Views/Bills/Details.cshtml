@@ -26,7 +26,7 @@
 		  <tbody>
 			<tr>
 				<th scope="row">@Html.DisplayFor(model=>model.Bill.Protocol)</th>
-				<td>@Html.DisplayFor(model=>model.Bill.User)</td>
+				<td>@Html.DisplayFor(model=>model.Bill.User.Name)</td>
 				<td>@Html.DisplayFor(model=>model.Bill.ClientName)</td>
 				<td>@Html.DisplayFor(model=>model.Bill.DocumentType)</td>
 				<td>@Html.DisplayFor(model=>model.Bill.ClientDocument)</td>
@@ -70,7 +70,7 @@
 					</tr>
 				}
 			</tbody>
-			<caption>Total de tickets Comprados: @Model.Tickets.Count()</caption>
+			<caption>Total de tickets comprados: @Model.Tickets.Count()</caption>
 		</table>
 	</div>
 </div>

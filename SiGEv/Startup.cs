@@ -49,7 +49,8 @@ namespace SiGEv
 			services.AddScoped<SectionsService>();
 			services.AddScoped<TicketsService>();
 			services.AddScoped<VenuesService>();
-		}
+			services.AddScoped<UsersService>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seed)

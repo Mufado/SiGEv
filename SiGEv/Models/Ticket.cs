@@ -8,8 +8,11 @@ namespace SiGEv.Models
     public class Ticket
     {
         public int Id { get; set; }
+
 		public int SeatNumber { get; set; }
+
 		public TicketType Type { get; set; }
+
 		[Display(Name = "Preço")]
 		public double Price { get; set; }
 
@@ -22,10 +25,12 @@ namespace SiGEv.Models
         [ForeignKey("Section")]
 		[Display(Name = "Id da Seção")]
 		public int SectionId { get; set; }
+
         public Section Section { get; set; }
 
         [ForeignKey("Venue")]
         public int VenueId { get; set; }
+
 		[Display(Name = "Endereço")]
 		public Venue Venue { get; set; }
 

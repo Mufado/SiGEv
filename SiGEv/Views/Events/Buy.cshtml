@@ -177,7 +177,6 @@ function qtdParc(){
     var select = document.getElementById("qtdParcelas");
 	var option = select.children[select.selectedIndex];
 	var texto = option.textContent;
-    console.log(texto);
 
     var textDetParcelas = document.getElementById("detailsParcelas");
 
@@ -199,8 +198,6 @@ var totalCompra;
 
 function valorTotal(){
 	qtdTickets = parseInt(document.getElementById("qtd_tickets").value);
-
-	console.log(valorBilhete)
 
 	totalCompra = 0;
 

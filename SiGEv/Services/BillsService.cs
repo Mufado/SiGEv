@@ -17,12 +17,12 @@ namespace SiGEv.Services
 
 		public List<Bill> FindAll()
 		{
-			return _context.Bills.ToList();
+			return _context.Bills.Include(bill => bill.User).ToList();
 		}
 
 		public Bill FindById(int id)
 		{
-			return _context.Bills.Include(obj => obj.SelledTickets).FirstOrDefault(bill => bill.Id == id);
+			return _context.Bills.Include(bill => bill.SelledTickets).Include(bill => bill.User).FirstOrDefault(bill => bill.Id == id);
 		}
 
 		public List<Bill> FindByUserId(int id)
